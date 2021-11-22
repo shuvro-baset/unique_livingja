@@ -2,3 +2,26 @@
     text-align: center;
     font-family: 'Playfair Display', 'helvetic neue', 'times new roman', sans-serif;
 }
+
+.badge {
+    padding-left: 5px;
+    padding-right: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+    background-color: #c67605;
+}
+
+#lblCartCount {
+    font-size: 12px;
+    background: #cf5804;
+    color: #fff;
+    padding: 2px 3px;
+    vertical-align: top;
+    margin-left: -10px;
+    border-radius: 3px;
+}
