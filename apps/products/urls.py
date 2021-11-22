@@ -26,4 +26,7 @@ urlpatterns = [
     path("category/<str:main_category>/<str:sku>", views.singleProduct, name="single_product"),
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"),
+
+
+    path("cart/", views.cart, name="cart"),
 ]
