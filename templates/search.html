@@ -2,102 +2,102 @@
 {% load static %}
 
 {% block content %}
-    <div class="container products thetop">
-        <ol class="breadcrumb" itemtype="http://schema.org/BreadcrumbList">
-            <li class="breadcrumb-item" itemscope="" itemtype="http://schema.org/ListItem">
-                <span>Search</span>
-            </li>
-        </ol>
-        <p style="font-size:14px;">Search results only show <em><strong>THE FIRST 30
-            PRODUCTS</strong></em>.
-            Please use filter
-            navigation on the
-            left below
-            or be
-            more
-            specific with the search term </p>
-        {#        <h1 class="text-center mt-3 capitalize" id="top-section"></h1>#}
-        <hr class="hr-below-title mb-4">
-        <div style="color: #EE7600;display:flex;flex-direction: row-reverse;">({{ total_result }} Results)</div>
-        <div class="float-left sticky-top d-none d-lg-block">
-            <div class="mb-2">
-                <ul class="justify-content-center list-inline">
-                    <li class="nav-item">
-                        <a class="nav-link categories honey ">
-                            <h5>Categories: </h5>
-                        </a>
-                    </li>
-                    {% for sub in products %}
-                        <li class="nav-item">
-                            <a class="nav-link categories honey capitalize"
-                               href="{% url 'sub_category' sub.main_category.name sub.sub_category.name %}">{{ sub.sub_category.name }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div>
-                <ul class="justify-content-center list-inline">
-                    <li class="nav-item">
-                        <a class="nav-link categories honey">
-                            <h5>Brands: </h5>
-                        </a>
-                    </li>
-                    {% for brand in products %}
-                        <li class="nav-item">
-                            <a class="nav-link categories honey"
-                               href="{% url 'brands' brand.main_category.name brand.brand %}">{{ brand.brand }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-md-12" id="list">
-            <div class="row prod-list" style="margin: 0px">
-                {% for product in page_obj %}
-                    <div class="card text-center col-sm-4" style="width: 22rem;">
-                        <a href="{% url 'single_product' product.main_category.name product.sku %}">
-                            <div class="card-body" style="text-align:center;">
-                                <div style="height: 250px; width: 250px;">
-                                    <img class="card-img-top card-img prodimg"
-                                         style="position: relative;margin-left: auto;margin-right:auto;"
-                                         src="{{ product.image.url }}"
-                                         alt="{{ product.name }}"
-                                         data-productname="{{ product.name }}">
-                                </div>
-                                <div>
-                                    <p class="card-title card-title-prod">
-                                        <span><b>{{ product.brand }}</b> {{ product.name }}</span></p>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    </div>
+<div class="container products thetop">
+    <ol class="breadcrumb" itemtype="http://schema.org/BreadcrumbList">
+        <li class="breadcrumb-item" itemscope="" itemtype="http://schema.org/ListItem">
+            <span>Search</span>
+        </li>
+    </ol>
+    <p style="font-size:14px;">Search results only show <em><strong>THE FIRST 30
+        PRODUCTS</strong></em>.
+        Please use filter
+        navigation on the
+        left below
+        or be
+        more
+        specific with the search term </p>
+    {# <h1 class="text-center mt-3 capitalize" id="top-section"></h1>#}
+    <hr class="hr-below-title mb-4">
+    <div style="color: #EE7600;display:flex;flex-direction: row-reverse;">({{ total_result }} Results)</div>
+    <div class="float-left sticky-top d-none d-lg-block">
+        <div class="mb-2">
+            <ul class="justify-content-center list-inline">
+                <li class="nav-item">
+                    <a class="nav-link categories honey ">
+                        <h5>Categories: </h5>
+                    </a>
+                </li>
+                {% for sub in products %}
+                <li class="nav-item">
+                    <a class="nav-link categories honey capitalize"
+                       href="{% url 'sub_category' sub.main_category.name sub.sub_category.name %}">{{
+                        sub.sub_category.name }}</a>
+                </li>
                 {% endfor %}
+            </ul>
         </div>
-        <div class="pagination">
-		<span class="step-links">
-			{% if page_obj.has_previous %}
-                <a href="?page=1&query={{ query_string }}" class="first">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}&query={{ query_string }}"
-                   class="previous">previous</a>
-            {% endif %}
-
-            <span class="current">
-				<span class="page">Page</span> <span>{{ page_obj.number }}</span> <span
-                    class="page">of</span> <span>{{ page_obj.paginator.num_pages }}</span>
-			</span>
-
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}&query={{ query_string }}" class="next">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}&query={{ query_string }}"
-                   class="last">last &raquo;</a>
-            {% endif %}
-		</span>
+        <div>
+            <ul class="justify-content-center list-inline">
+                <li class="nav-item">
+                    <a class="nav-link categories honey">
+                        <h5>Brands: </h5>
+                    </a>
+                </li>
+                {% for brand in products %}
+                <li class="nav-item">
+                    <a class="nav-link categories honey"
+                       href="{% url 'brands' brand.main_category.name brand.brand %}">{{ brand.brand }}</a>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 
+    <div class="col-md-12" id="list">
+        <div class="row prod-list" style="margin: 0px">
+            {% for product in page_obj %}
+            <div class="card text-center col-sm-4" style="width: 22rem;">
+                <a href="{% url 'single_product' product.main_category.name product.sku %}">
+                    <div class="card-body" style="text-align:center;">
+                        <div style="height: 250px; width: 250px;">
+                            <img class="card-img-top card-img prodimg"
+                                 style="position: relative;margin-left: auto;margin-right:auto;"
+                                 src="{{ product.image.url }}"
+                                 alt="{{ product.name }}"
+                                 data-productname="{{ product.name }}">
+                        </div>
+                        <div>
+                            <p class="card-title card-title-prod">
+                                <span><b>{{ product.brand }}</b> {{ product.name }}</span></p>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="pagination pagination-centered">
+        <ul>
+            <!-- <span class="step-links">-->
+            {% if page_obj.has_previous %}
+            <li><a href="?page=1" class="first">&laquo; first</a></li>
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="previous">previous</a></li>
+            {% endif %}
+
+            <!-- <span class="current">-->
+            <li><span class="page">Page</span> <span>{{ page_obj.number }}</span></li>
+            <li><span class="page">of</span> <span>{{ page_obj.paginator.num_pages }}</span></li>
+            <!--  </span>-->
+
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="next">next</a></li>
+            <li><a href="?page={{ page_obj.paginator.num_pages }}" class="last">last &raquo;</a></li>
+            {% endif %}
+            <!--   </span>-->
+        </ul>
+    </div>
+</div>
 
 
 {% endblock %}
