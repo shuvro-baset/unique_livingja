@@ -1,0 +1,190 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+
+    <div class="modal fade mb-2" id="feedback" tabindex="-1" role="dialog" aria-labelledby="enlargeImageModal" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg" style="position: relative; top: 35%; left:10%" role="document">
+    <div class="modal-content" style="width: 600px; height: 300px; background: orange url('http://d1z9ehtk9rps9k.cloudfront.net/logos/UniqueLogo.png'); background-size: cover;">
+      <div style="width:100%;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size:20px;">X</button>
+      </div>
+      <div style="width:90%;height:50%; position: relative; bottom: -25%; left: 5%;">
+        <!-- Begin MailChimp Signup Form -->
+        <link href="{% static 'asset/horizontal-slim-10_7.css' %}" rel="stylesheet" type="text/css">
+        <style type="text/css">
+        	#mc_embed_signup{background:#d46b44; clear:left; font:14px; width:100%;},
+        	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+        	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+        </style>
+        <div id="mc_embed_signup">
+        <form action="/mailing" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate="">
+            <div id="mc_embed_signup_scroll">
+        	<label for="mce-EMAIL"> Subscribe to our mailing list</label>
+        	<input type="email" value="" name="email" style="width:95%" class="email" id="mce-EMAIL" placeholder="email address" required="">
+            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div class="clear"><input type="submit" class="btn btn-dark mt-2"></div>
+            </div>
+        </form>
+        </div>
+        
+        <!--End mc_embed_signup-->
+        
+      </div>
+    </div>
+  </div>
+</div>
+<br> <div class="container col-md-9 mb-5">
+  <p></p>
+  <h1>Unique Living: </h1>
+  <h2>For Your Home-Explore The Possibilities</h2>
+  <p>Unique Living opened its doors in 2008 at Shop #6, 30 Dunrobin Avenue, Kgn 10. We specialise in the sales and
+    installation of luxury and affordable bathroom and kitchen fixtures and accessories. </p>
+  <p>We are an authorised distributor of
+    <strong> ELFA, TOTO®, GROHE, HANSGROHE, AMERISINK, RONBOW, GEDY, CATALANO, MOEN </strong> and many other top brands.
+  </p>
+
+  <p>Our offerings include unique shower systems, shower enclosures/doors, vanities, bathroom fans, shower drains,
+    shower caddies, stainless steel kitchen sinks, widest variety of rain heads, closet organizers, toilets, kitchen and
+    bath faucets, grab bars, bathroom accessories, shower and basin mixers, hand showers and more.</p>
+</div>
+<div class="mb-3">
+  <div class="container d-none d-lg-block brands-footer logos-top text-center">
+    <ul style="list-style: none;">
+      <li>
+        <a href="/brand/TOTO">
+          <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/toto.png" alt="toto">
+        </a>
+      </li>
+      <li>
+        <a href="/closet">
+          <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/elfa.png" alt="elfa">
+        </a>
+      </li>
+      <li>
+        <a href="/brand/HANSGROHE">
+          <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/hansgro.png" alt="hansgrohe">
+        </a>
+      </li>
+    
+      <li>
+        <a href="/brand/GROHE">
+          <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/grohe.png" alt="grohe">
+        </a>
+      </li>
+      <li>
+        <a href="/brand/RONBOW">
+          <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/ronbow.png" alt="ronbow">
+        </a>
+      </li>
+      <li>
+        <a href="/brand/AmeriSink">
+          <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/amerisink.png" alt="amerisink">
+        </a>
+      </li>
+      <li>
+        <a href="/brand/CATALANO">
+          <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/catalano.png" alt="catalano">
+        </a>
+      </li>
+      <li>
+        <a href="/brand/GEDY">
+          <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/gedy.png" alt="gedy">
+        </a>
+      </li>
+      <li>
+        <a href="/brand/MOEN">
+          <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/moen.png" alt="moen">
+        </a>
+      </li>
+    </ul>
+</div>
+</div><div class="mb-3">
+  <div class="container d-lg-none d-xl-none brands-footer text-center">
+  <ul style="list-style: none;">
+    <li>
+      <a href="/brand/TOTO">
+        <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/toto.png" alt="toto">
+      </a>
+    </li>
+    <li>
+      <a href="/closet">
+        <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/elfa.png" alt="elfa">
+      </a>
+    </li>
+    <li>
+      <a href="/brand/HANSGROHE">
+        <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/hansgro.png" alt="hansgrohe">
+      </a>
+    </li>
+  
+    <li>
+      <a href="/brand/GROHE">
+        <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/grohe.png" alt="grohe">
+      </a>
+    </li>
+    <li>
+      <a href="/brand/RONBOW">
+        <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/ronbow.png" alt="ronbow">
+      </a>
+    </li>
+    <li>
+      <a href="/brand/AmeriSink">
+        <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/amerisink.png" alt="amerisink">
+      </a>
+    </li>
+    <li>
+      <a href="/brand/CATALANO">
+        <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/catalano.png" alt="catalano">
+      </a>
+    </li>
+    <li>
+      <a href="/brand/GEDY">
+        <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/gedy.png" alt="gedy">
+      </a>
+    </li>
+    <li>
+      <a href="/brand/MOEN">
+        <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/moen.png" alt="moen">
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+    <div class="modal fade" id="enlargeImageModal" tabindex="-1" role="dialog" aria-labelledby="enlargeImageModal" aria-hidden="true">
+      <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p class="enlargeName"></p>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body" style="text-align: center;">
+            <img src="" class="enlargeImageModalSource" style="width: 75%;max-height:500px">
+          </div>
+        </div>
+      </div>
+    </div>
+    <a id="back-to-top" href="#" class="btn btn-warning btn-sm back-to-top" role="button" title="" data-toggle="tooltip" data-placement="left" data-original-title="" style="display: none;">
+      <i class="fal fa-arrow-circle-up"></i>Back-to-Top</a>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

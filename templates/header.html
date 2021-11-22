@@ -1,0 +1,256 @@
+{% load static %}
+
+
+<!-- navbar start  -->
+<nav class="navbar navbar-expand-sm secondary">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/UniqueLogo.png" alt="Unique Living" width="200"
+                 height="75">
+        </a>
+        <ul class="nav justify-content-end">
+            <li class="nav-item second">
+                <a class="nav-link text-dark second">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/Call.png" alt="faucets"> (876)-618-3639</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link text-dark second" href="/contact-us#contact_form">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/mail.png" alt="mail">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="https://www.facebook.com/uniquelivingjamaica/">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/facebook.png" alt="facebook">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="https://www.instagram.com/uniquelivingjamaica/">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/instagram.png" alt="instagram"
+                         style="width:36px;height:35px">
+                </a>
+            </li>
+            <li class="nav-item">
+                <strong class="nav-link text-dark">
+                    {{ user.first_name|title }}
+                </strong>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<div class="container thetop responsive">
+    <nav class="navbar navbar-expand-sm below navbar-dark bg-warning">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item  font-weight-bold">
+                        <a class="nav-link text-dark" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown font-weight-bold" style="box-sizing: border-box;">
+                        <a class="nav-link text-dark" href="{% url 'bathroom' %}" role="button" aria-haspopup="true"
+                           aria-expanded="false">Bathroom</a>
+                        <div class="data-toggle=collapse navbar-expand-sm" style="box-sizing: border-box;">
+                            <ul class="dropdown-menu">
+                                <li class="list-group horizontal responsive">
+                                    <a class="dropdown-item" href="/category/bathroom/subcategory/basin-faucets">
+                                        <img class="sub-nav-img img-fluid"
+                                             src="http://d1z9ehtk9rps9k.cloudfront.net/facuetsmini.jpeg"
+                                             alt="bathroom-faucets">
+                                        <p class="text-center">Faucets</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item horizontal" href="/category/bathroom/addcategory/showers">
+                                        <img class="sub-nav-img img-fluid"
+                                             src="http://d1z9ehtk9rps9k.cloudfront.net/bathroom-shower-and-spa.jpeg"
+                                             alt="shower">
+                                        <p class="text-center">Shower</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item horizontal" href="/category/bathroom/subcategory/sinks">
+                                        <img class="sub-nav-img img-fluid"
+                                             src="http://d1z9ehtk9rps9k.cloudfront.net/42300000.jpg" alt="sink">
+                                        <p class="text-center">Sinks</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/category/bathroom/subcategory/toilets">
+                                        <img class="sub-nav-img img-fluid"
+                                             src="http://d1z9ehtk9rps9k.cloudfront.net/MW6263046CEFG_01.png"
+                                             alt="toilets">
+                                        <p class="text-center">Toilets</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/category/bathroom/addcategory/accessories">
+                                        <img class="sub-nav-img img-fluid"
+                                             src="http://d1z9ehtk9rps9k.cloudfront.net/accessories.jpeg"
+                                             alt="accessories">
+                                        <p class="text-center">Accessories</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown font-weight-bold" style="box-sizing: border-box;">
+                        <a class="nav-link text-dark" href="{% url 'kitchen' %}" role="button" aria-haspopup="true"
+                           aria-expanded="false">Kitchen</a>
+                        <ul class="dropdown-menu">
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/kitchen/subcategory/sinks">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/as106.jpg"
+                                         alt="kitchen sinks">
+                                    <p class="text-center">Sinks</p>
+                                </a>
+                            </li>
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/kitchen/subcategory/faucets">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/5923.jpg"
+                                         alt="kitchen faucets">
+                                    <p class="text-center">Faucets</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown font-weight-bold">
+                        <a class="nav-link text-dark" href="{% url 'commercial' %}" role="button" aria-haspopup="true"
+                           aria-expanded="false">Commercial</a>
+                        <ul class="dropdown-menu">
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/commercial/subcategory/bathroom-sinks">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/LT56901.png"
+                                         alt="commercial-bathroom-sinks">
+                                    <p class="text-center">Sinks</p>
+                                </a>
+                            </li>
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/commercial/subcategory/toilets">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/UT104E01.png"
+                                         alt="commercial-toilets">
+                                    <p class="text-center">Toilets</p>
+                                </a>
+                            </li>
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/commercial/subcategory/towel-dispenser">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/2494000000.jpg"
+                                         alt="commercial-towel-dispensers">
+                                    <p class="text-center">Towel Dispensers</p>
+                                </a>
+                            </li>
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/commercial/subcategory/soap-dispenser">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/6542000000.jpg"
+                                         alt="commercial-soap-dispenser">
+                                    <p class="text-center">Soap Dispensers</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown font-weight-bold" style="box-sizing: border-box;">
+                        <a class="nav-link text-dark" href="{% url 'hardware' %}" role="button" aria-haspopup="true"
+                           aria-expanded="false">Hardware</a>
+                        <ul class="dropdown-menu">
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/hardware/subcategory/shanks">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/45414.jpg"
+                                         alt="hardware-shanks">
+                                    <p class="text-center">Shanks</p>
+                                </a>
+                            </li>
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/hardware/subcategory/glues">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/5004.jpg"
+                                         alt="hardware-glues">
+                                    <p class="text-center">Glues</p>
+                                </a>
+                            </li>
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/hardware/subcategory/hinges">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/31190560.jpg"
+                                         alt="hardware-hinges">
+                                    <p class="text-center">Hinges</p>
+                                </a>
+                            </li>
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/hardware/subcategory/circular-blades">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/md10-240.jpg"
+                                         alt="hardware-circular-blades">
+                                    <p class="text-center">Blades</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item font-weight-bold">
+                        <a class="nav-link text-dark" href="{% url 'enclosure' %}">Shower Enclosures</a>
+                    </li>
+                    <li class="nav-item font-weight-bold">
+                        <a class="nav-link text-dark" href="{% url 'closets' %}">Closets</a>
+                    </li>
+                    <li class="nav-item font-weight-bold">
+                        <a class="nav-link text-dark" href="{% url 'about' %}">About Us</a>
+                    </li>
+                    <li class="nav-item font-weight-bold">
+                        <a class="nav-link text-dark" href="{% url 'contact' %}">Contact Us</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item font-weight-bold">
+                            <a class="nav-link text-dark" href="{% url 'logout' %}">Logut</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item font-weight-bold">
+                            <a class="nav-link text-dark" href="{% url 'login' %}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+</div>
+
+<!-- navbar end -->
+
+
+<!--  -->
+<div class="container thetop responsive">
+    <div class="modal fade" id="enlargeImageModal" tabindex="-1" role="dialog" aria-labelledby="enlargeImageModal"
+         aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="enlargeName"></p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="text-align: center;">
+                    <img src="" class="enlargeImageModalSource" style="width: 75%;max-height:500px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- back to top  -->
+    <a id="back-to-top" href="#" class="btn btn-warning btn-sm back-to-top" role="button" title="" data-toggle="tooltip"
+       data-placement="left">
+        <i class="fal fa-arrow-circle-up"></i>Back-to-Top
+    </a>
+</div>
+
+
+<!-- search bar  -->
+
+<div class="container thetop responsive">
+    <form class="d-flex flex-row align-items-end mt-1 justify-content-end" action="{% url 'search' %}" method="GET">
+        <input class="form-control p2 col-3" type="search" name="query" placeholder="Search" aria-label="Search"
+               required>
+        <button class="btn btn-outline-warning my-2 my-sm-0 form-control-btn" type="submit">Search</button>
+    </form>
+</div>
+

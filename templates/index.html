@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-site-verification" content="x-yIsyN67gjyaAJNZ1nl9GYODhwP9-c9AkLCWuC_-fQ"/>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="/asset/app.css">
+    <link rel="stylesheet" href="/asset/smoothproducts.css">
+    <link rel="stylesheet" href="/asset/custom.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <title> Unique Living</title>
+
+    <link rel="icon" href="http://d1z9ehtk9rps9k.cloudfront.net/logos/uniquefavicon.png" type="image/png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148378916-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-148378916-1');
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var url = window.location;
+            $('ul.navbar-nav a[href="' + url + '"]').parent().addClass('active');
+            $('ul.navbar-nav a').filter(function () {
+                return this.href == url;
+            }).parent().addClass('active');
+        });
+    </script>
+
+</head>
+
+<body>
+<!-- navbar start  -->
+<nav class="navbar navbar-expand-sm secondary">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/UniqueLogo.png" alt="Unique Living" width="200"
+                 height="75">
+        </a>
+        <ul class="nav justify-content-end">
+            <li class="nav-item second">
+                <a class="nav-link text-dark second">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/Call.png" alt="faucets"> (876)-618-3639</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link text-dark second" href="/contact-us#contact_form">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/mail.png" alt="mail">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="https://www.facebook.com/uniquelivingjamaica/">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/facebook.png" alt="facebook">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="https://www.instagram.com/uniquelivingjamaica/">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/instagram.png" alt="instagram"
+                         style="width:36px;height:35px">
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container thetop responsive">
+    <nav class="navbar navbar-expand-sm below navbar-dark bg-warning">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item  font-weight-bold">
+                        <a class="nav-link text-dark" href="/">Home </a>
+                    </li>
+                    <li class="nav-item dropdown font-weight-bold" style="box-sizing: border-box;">
+                        <a class="nav-link text-dark" href="/category/bathroom" role="button" aria-haspopup="true"
+                           aria-expanded="false">Bathroom</a>
+                        <div class="data-toggle=collapse navbar-expand-sm" style="box-sizing: border-box;">
+                            <ul class="dropdown-menu">
+                                <li class="list-group horizontal responsive">
+                                    <a class="dropdown-item" href="/category/bathroom/subcategory/basin-faucets">
+                                        <img class="sub-nav-img img-fluid"
+                                             src="http://d1z9ehtk9rps9k.cloudfront.net/facuetsmini.jpeg"
+                                             alt="bathroom-faucets">
+                                        <p class="text-center">Faucets</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item horizontal" href="/category/bathroom/addcategory/showers">
+                                        <img class="sub-nav-img img-fluid"
+                                             src="http://d1z9ehtk9rps9k.cloudfront.net/bathroom-shower-and-spa.jpeg"
+                                             alt="shower">
+                                        <p class="text-center">Shower</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item horizontal" href="/category/bathroom/subcategory/sinks">
+                                        <img class="sub-nav-img img-fluid"
+                                             src="http://d1z9ehtk9rps9k.cloudfront.net/42300000.jpg" alt="sink">
+                                        <p class="text-center">Sinks</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/category/bathroom/subcategory/toilets">
+                                        <img class="sub-nav-img img-fluid"
+                                             src="http://d1z9ehtk9rps9k.cloudfront.net/MW6263046CEFG_01.png"
+                                             alt="toilets">
+                                        <p class="text-center">Toilets</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/category/bathroom/addcategory/accessories">
+                                        <img class="sub-nav-img img-fluid"
+                                             src="http://d1z9ehtk9rps9k.cloudfront.net/accessories.jpeg"
+                                             alt="accessories">
+                                        <p class="text-center">Accessories</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown font-weight-bold" style="box-sizing: border-box;">
+                        <a class="nav-link text-dark" href="/category/kitchen" role="button" aria-haspopup="true"
+                           aria-expanded="false">Kitchen</a>
+                        <ul class="dropdown-menu">
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/kitchen/subcategory/sinks">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/as106.jpg"
+                                         alt="kitchen sinks">
+                                    <p class="text-center">Sinks</p>
+                                </a>
+                            </li>
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/kitchen/subcategory/faucets">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/5923.jpg"
+                                         alt="kitchen faucets">
+                                    <p class="text-center">Faucets</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown font-weight-bold">
+                        <a class="nav-link text-dark" href="/category/commercial" role="button" aria-haspopup="true"
+                           aria-expanded="false">Commercial</a>
+                        <ul class="dropdown-menu">
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/commercial/subcategory/bathroom-sinks">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/LT56901.png"
+                                         alt="commercial-bathroom-sinks">
+                                    <p class="text-center">Sinks</p>
+                                </a>
+                            </li>
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/commercial/subcategory/toilets">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/UT104E01.png"
+                                         alt="commercial-toilets">
+                                    <p class="text-center">Toilets</p>
+                                </a>
+                            </li>
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/commercial/subcategory/towel-dispenser">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/2494000000.jpg"
+                                         alt="commercial-towel-dispensers">
+                                    <p class="text-center">Towel Dispensers</p>
+                                </a>
+                            </li>
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/commercial/subcategory/soap-dispenser">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/6542000000.jpg"
+                                         alt="commercial-soap-dispenser">
+                                    <p class="text-center">Soap Dispensers</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown font-weight-bold" style="box-sizing: border-box;">
+                        <a class="nav-link text-dark" href="/category/hardware" role="button" aria-haspopup="true"
+                           aria-expanded="false">Hardware</a>
+                        <ul class="dropdown-menu">
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/hardware/subcategory/shanks">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/45414.jpg"
+                                         alt="hardware-shanks">
+                                    <p class="text-center">Shanks</p>
+                                </a>
+                            </li>
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/hardware/subcategory/glues">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/5004.jpg"
+                                         alt="hardware-glues">
+                                    <p class="text-center">Glues</p>
+                                </a>
+                            </li>
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/hardware/subcategory/hinges">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/31190560.jpg"
+                                         alt="hardware-hinges">
+                                    <p class="text-center">Hinges</p>
+                                </a>
+                            </li>
+                            <li class="list-group horizontal">
+                                <a class="dropdown-item" href="/category/hardware/subcategory/circular-blades">
+                                    <img class="sub-nav-img" src="http://d1z9ehtk9rps9k.cloudfront.net/md10-240.jpg"
+                                         alt="hardware-circular-blades">
+                                    <p class="text-center">Blades</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item font-weight-bold">
+                        <a class="nav-link text-dark" href="/enclosure">Shower Enclosures</a>
+                    </li>
+                    <li class="nav-item font-weight-bold">
+                        <a class="nav-link text-dark" href="/closet">Closets</a>
+                    </li>
+                    <li class="nav-item font-weight-bold">
+                        <a class="nav-link text-dark" href="/about">About Us</a>
+                    </li>
+                    <li class="nav-item font-weight-bold">
+                        <a class="nav-link text-dark" href="/contact-us">Contact Us</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+</div>
+
+<!-- navbar end -->
+
+
+<!--  -->
+<div class="container thetop responsive">
+    <div class="modal fade" id="enlargeImageModal" tabindex="-1" role="dialog" aria-labelledby="enlargeImageModal"
+         aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="enlargeName"></p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="text-align: center;">
+                    <img src="" class="enlargeImageModalSource" style="width: 75%;max-height:500px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- back to top  -->
+    <a id="back-to-top" href="#" class="btn btn-warning btn-sm back-to-top" role="button" title="" data-toggle="tooltip"
+       data-placement="left">
+        <i class="fal fa-arrow-circle-up"></i>Back-to-Top
+    </a>
+</div>
+</div>
+
+<!-- search bar  -->
+
+<div class="container thetop responsive">
+    <form class="d-flex flex-row align-items-end mt-1 justify-content-end" action="/search" method="GET">
+        <input class="form-control p2 col-3" type="search" name="query" placeholder="Search" aria-label="Search"
+               required="true">
+        <button class="btn btn-outline-warning my-2 my-sm-0 form-control-btn" type="submit">Search</button>
+    </form>
+</div>
+
+
+<div class="container thetop responsive my-4">
+    <!-- carousel start -->
+    <div class="carousel-background">
+        <div id="carousel" class="carousel slide carousel-fade mb-3" data-ride="carousel" data-interval="6000">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel" data-slide-to="1"></li>
+                <li data-target="#carousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <a href="/category/kitchen">
+                        <!--
+                        If you need more browser support use https://scottjehl.github.io/picturefill/
+                        If a picture looks blurry on a retina device you can add a high resolution like this
+                        <source srcset="img/blog-post-1000x600-2.jpg, blog-post-1000x600-2@2x.jpg 2x" media="(min-width: 768px)">
+
+                        What image sizes should you use? This can help - https://codepen.io/JacobLett/pen/NjramL
+                         -->
+                        <picture style="float-left"></picture>
+                        <img srcset="http://d1z9ehtk9rps9k.cloudfront.net/cover_kitchen.png" alt="responsive image"
+                             class="d-block img-fluid">
+                        </picture>
+                    </a>
+                </div>
+                <!-- /.carousel-item -->
+                <div class="carousel-item">
+                    <a href="/category/bathroom">
+                        <picture>
+                            <img srcset="http://d1z9ehtk9rps9k.cloudfront.net/cover_shower.png" alt="responsive image"
+                                 class="d-block img-fluid">
+                        </picture>
+                    </a>
+                </div>
+                <!-- /.carousel-item -->
+                <div class="carousel-item">
+                    <a class="carousel-link" href="/category/commercial">
+                        <picture>
+                            <img srcset="http://d1z9ehtk9rps9k.cloudfront.net/cover_toto.png" alt="responsive image"
+                                 class="d-block img-fluid">
+                        </picture>
+                    </a>
+                </div>
+                <!-- /.carousel-item -->
+            </div>
+            <!-- /.carousel-inner -->
+
+        </div>
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon d-none d-lg-block" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon d-none d-lg-block" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+</div>
+<!-- carousel end  -->
+
+<!-- featured products start -->
+<div class="container thetop responsive">
+    <h2 class="mt-5 featured-product">Featured Products</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <a href="">
+                    <div class="card-body">
+                        <img class="card-img-top prodimg img-fluid"
+                             src="http://d1z9ehtk9rps9k.cloudfront.net/126151.jpg" alt="Card image cap">
+
+                        <p class="card-title card-title-prod text-center">
+            <span>
+              <b>brand</b> name
+            </span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <a href="">
+                    <div class="card-body">
+                        <img class="card-img-top prodimg img-fluid"
+                             src="http://d1z9ehtk9rps9k.cloudfront.net/126151.jpg" alt="Card image cap">
+
+                        <p class="card-title card-title-prod text-center">
+          <span>
+            <b>brand</b> name
+          </span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <a href="">
+                    <div class="card-body">
+                        <img class="card-img-top prodimg img-fluid"
+                             src="http://d1z9ehtk9rps9k.cloudfront.net/126151.jpg" alt="Card image cap">
+
+                        <p class="card-title card-title-prod text-center">
+              <span>
+                <b>brand</b> name
+              </span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <a href="">
+                    <div class="card-body">
+                        <img class="card-img-top prodimg img-fluid"
+                             src="http://d1z9ehtk9rps9k.cloudfront.net/126151.jpg" alt="Card image cap">
+
+                        <p class="card-title card-title-prod text-center">
+            <span>
+              <b>brand</b> name
+            </span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <a href="">
+                    <div class="card-body">
+                        <img class="card-img-top prodimg img-fluid"
+                             src="http://d1z9ehtk9rps9k.cloudfront.net/126151.jpg" alt="Card image cap">
+
+                        <p class="card-title card-title-prod text-center">
+          <span>
+            <b>brand</b> name
+          </span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <a href="">
+                    <div class="card-body">
+                        <img class="card-img-top prodimg img-fluid"
+                             src="http://d1z9ehtk9rps9k.cloudfront.net/126151.jpg" alt="Card image cap">
+
+                        <p class="card-title card-title-prod text-center">
+        <span>
+          <b>brand</b> name
+        </span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- featured products end -->
+
+<!-- brand logo start -->
+<div class="my-5">
+    <div class="container  brands-footer text-center">
+        <ul style="list-style: none;">
+            <li>
+                <a href="/brand/TOTO">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/toto.png" alt="toto">
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'closets' %}">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/elfa.png" alt="elfa">
+                </a>
+            </li>
+            <li>
+                <a href="/brand/HANSGROHE">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/hansgro.png" alt="hansgrohe">
+                </a>
+            </li>
+
+            <li>
+                <a href="/brand/GROHE">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/grohe.png" alt="grohe">
+                </a>
+            </li>
+            <li>
+                <a href="/brand/RONBOW">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/ronbow.png" alt="ronbow">
+                </a>
+            </li>
+            <li>
+                <a href="/brand/AmeriSink">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/amerisink.png" alt="amerisink">
+                </a>
+            </li>
+            <li>
+                <a href="/brand/CATALANO">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/catalano.png" alt="catalano">
+                </a>
+            </li>
+            <li>
+                <a href="/brand/GEDY">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/gedy.png" alt="gedy">
+                </a>
+            </li>
+            <li>
+                <a href="/brand/MOEN">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/moen.png" alt="moen">
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- brand logo end  -->
+
+<!--Footer-->
+<footer class="page-footer bg-warning">
+    <!--Footer Links-->
+    <div class="container">
+        <!-- Footer links -->
+        <div class="row text-center text-md-left mt-3 pb-3">
+            <!--First column-->
+            <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
+                <a class="navbar-brand" href="/">
+                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/logos/UniqueLogo.png" alt="Unique Living" width="80"
+                         height="40">
+                </a>
+                <p>
+                    <strong>
+                        <i>Where quality meets expectation!</i>
+                    </strong>
+                </p>
+            </div>
+            <!--/.First column-->
+            <hr class="w-100 clearfix d-md-none">
+            <!--Second column-->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <ul class="foot-link text-center" style="list-style: none; padding: 0">
+                    <li>
+                        <h6 class="title mb-4 font-bold text-center foot-link">Products</h6>
+                    </li>
+                    <li>
+                        <a href="/category/kitchen">Kitchen</a>
+                    </li>
+                    <li>
+                        <a href="/category/bathroom/subcategory/toilets">Toilets</a>
+                    </li>
+                    <li>
+                        <a href="/category/bathroom/subcategory/showers">Showers</a>
+                    </li>
+                    <li>
+                        <a href="/enclosure">Enclosures</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.Second column-->
+            <hr class="w-100 clearfix d-md-none">
+            <!--Third column-->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+
+                <ul class="foot-link text-center" style="list-style: none; padding:0;">
+                    <li>
+                        <h6 class="title mb-4 font-bold text-center foot-link">Useful links</h6>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/uniquelivingjamaica/">Facebook</a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/uniquelivingjamaica/">Instagram</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.Third column-->
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h6 class="title mb-4 font-bold foot-link">Contact Us</h6>
+                <span class="mb-2 foot-add foot-link"> Shop 6, 30 Dunrobin Ave, Kingston 10, (876)-755-3661
+                </span>
+                <img class="footer-map" src="http://d1z9ehtk9rps9k.cloudfront.net/logos/dunrobin.png">
+            </div>
+            <hr class="clearfix d-md-none">
+
+        </div>
+        <!-- Footer links -->
+
+
+        <hr>
+        <div class="row py-3 d-flex ">
+            <!--Grid column-->
+            <div class="copyright">
+
+                <!--Copyright-->
+                <p class="grey-text">©
+                    <script>document.write(new Date().getFullYear())</script>
+                    Copyright: Unique Living
+                </p>
+                <!--/.Copyright-->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-to-top').click(function () {
+            $('#back-to-top').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+
+        $('#back-to-top').tooltip('show');
+
+    });
+</script>
+
+{#<script>#}
+{#    window.onload = function () {#}
+{#        const featured = new Vue({#}
+{#            el: '#featured',#}
+{#            data: {#}
+{#                products: [#}
+{#                    {#}
+{#                        "sku": "126151",#}
+{#                        "category": "bathroom",#}
+{#                        "finish": [#}
+{#                            ""#}
+{#                        ],#}
+{#                        "name": " Sansa Vanity",#}
+{#                        "Wholesale Price": "",#}
+{#                        "brand": "ROYO",#}
+{#                        "Price": "",#}
+{#                        "status": "",#}
+{#                        "addcategory": "",#}
+{#                        "supcategory": "",#}
+{#                        "image": "http://d1z9ehtk9rps9k.cloudfront.net/126151.jpg",#}
+{#                        "subcategory": "vanities",#}
+{#                        "url": "/category/bathroom/subcategory/vanities/126151"#}
+{##}
+{#                    },#}
+{#                    {#}
+{#                        "sku": "125450",#}
+{#                        "category": "bathroom",#}
+{#                        "finish": [#}
+{#                            ""#}
+{#                        ],#}
+{#                        "name": "Onix Vanity",#}
+{#                        "Wholesale Price": "",#}
+{#                        "brand": "ROYO",#}
+{#                        "Price": "",#}
+{#                        "status": "",#}
+{#                        "addcategory": "",#}
+{#                        "supcategory": "",#}
+{#                        "image": "http://d1z9ehtk9rps9k.cloudfront.net/125450.jpg",#}
+{#                        "subcategory": "vanities",#}
+{#                        "url": "/category/bathroom/subcategory/vanities/125450"#}
+{#                    },#}
+{#                    {#}
+{#                        "sku": "33.300.02",#}
+{#                        "category": "bathroom",#}
+{#                        "finish": [#}
+{#                            ""#}
+{#                        ],#}
+{#                        "name": "Delta Linear Drain",#}
+{#                        "Wholesale Price": "",#}
+{#                        "brand": "DELTA",#}
+{#                        "Price": "",#}
+{#                        "status": "",#}
+{#                        "addcategory": "showers",#}
+{#                        "supcategory": "shower-drains",#}
+{#                        "image": "http://d1z9ehtk9rps9k.cloudfront.net/3330002.jpg",#}
+{#                        "subcategory": "",#}
+{#                        "url": "/category/bathroom/addcategory/showers/supcategory/shower-drains/33.300.02"#}
+{#                    },#}
+{#                    {#}
+{#                        "sku": "WA0000",#}
+{#                        "category": "commercial",#}
+{#                        "finish": [#}
+{#                            "white"#}
+{#                        ],#}
+{#                        "name": "VK-4008 soap or hand sanitizer dispenser",#}
+{#                        "Wholesale Price": "",#}
+{#                        "brand": "VIEANY",#}
+{#                        "Price": "",#}
+{#                        "status": "",#}
+{#                        "addcategory": "",#}
+{#                        "supcategory": "",#}
+{#                        "image": "http://d1z9ehtk9rps9k.cloudfront.net/WA0000.jpg",#}
+{#                        "subcategory": "soap-dispenser",#}
+{#                        "url": "/category/commercial/WA0000"#}
+{#                    },#}
+{#                    {#}
+{#                        "sku": "27630000",#}
+{#                        "category": "bathroom",#}
+{#                        "finish": [#}
+{#                            "chrome"#}
+{#                        ],#}
+{#                        "name": "Croma E Showerpipe 280 1jet with thermostat",#}
+{#                        "Wholesale Price": "",#}
+{#                        "brand": "HANSGROHE",#}
+{#                        "Price": "",#}
+{#                        "status": "",#}
+{#                        "addcategory": "",#}
+{#                        "supcategory": "",#}
+{#                        "image": "http://d1z9ehtk9rps9k.cloudfront.net/27630000.jpg",#}
+{#                        "subcategory": "shower",#}
+{#                        "url": "/category/bathroom/27630000"#}
+{#                    },#}
+{#                    {#}
+{#                        "sku": "71133000",#}
+{#                        "category": "bathroom",#}
+{#                        "finish": [#}
+{#                            "chrome"#}
+{#                        ],#}
+{#                        "name": "Logis 3-hole basin mixer",#}
+{#                        "Wholesale Price": "",#}
+{#                        "brand": "HANSGROHE",#}
+{#                        "Price": "",#}
+{#                        "status": "",#}
+{#                        "addcategory": "",#}
+{#                        "supcategory": "",#}
+{#                        "image": "http://d1z9ehtk9rps9k.cloudfront.net/71133000.png",#}
+{#                        "subcategory": "faucets",#}
+{#                        "url": "/category/bathroom/71133000"#}
+{#                    },#}
+{##}
+{#                ]#}
+{#            },#}
+{#        })#}
+{#    }#}
+{#</script>#}
+
+<script>
+    $(function () {
+        $('.prodimg').on('click', function () {
+            $('.enlargeImageModalSource').attr('src', $(this).attr('src'));
+            $('.enlargeName').attr('html', $(this).attr('data-productname'));
+            $('.enlargeName').text($(this).attr('data-productname'));
+            $('#enlargeImageModal').modal('show');
+        });
+    });
+</script>
+
+<!-- --}} -->
+<script type="text/javascript" src="/asset/smoothproducts.min.js"></script>
+<script type="text/javascript">
+    /* wait for images to load */
+    $(window).load(function () {
+        $('.sp-wrap').smoothproducts();
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="https://fastcdn.org/Respond/1.4.2/respond.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr.js"></script>
+</body>
+</html>

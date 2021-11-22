@@ -1,0 +1,207 @@
+{% extends 'main.html' %}
+
+{% load static i18n %}
+
+{% block headblock %}
+    <style>
+        a.zoom {
+            box-shadow: 0 10px 40px 0 rgba(47, 47, 47, 0.1);
+            margin: 0 auto;
+            background-position: 50% 50%;
+            width: 298px;
+            height: 298px;
+            overflow: hidden;
+            cursor: zoom-in;
+        }
+
+        a.zoom img:hover {
+            opacity: 0;
+        }
+
+        a.zoom img {
+            transition: opacity 0.5s;
+            display: block;
+            width: inherit;
+        }
+
+        #sp-lightbox {
+            background: rgba(25, 25, 25, 0.959);
+            background-position: center;
+            background-size: cover;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+            height: 100%;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: none;
+        }
+
+        #sp-lightbox img {
+            position: absolute;
+            /* margin: 0 auto; */
+            left: 36%;
+            top: 20%;
+            height: 400px;
+            width: 400px;
+        }
+
+        @media (max-width: 1440px) {
+            #sp-lightbox img {
+                left: 36%;
+                top: 20%;
+                height: 400px;
+                width: 400px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            #sp-lightbox img {
+                left: 35%;
+                top: 20%;
+                height: 350px;
+                width: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #sp-lightbox img {
+                left: 30%;
+                top: 20%;
+                height: 300px;
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 426px) {
+            #sp-lightbox img {
+                left: 15%;
+                top: 25%;
+                height: 300px;
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 376px) {
+            #sp-lightbox img {
+                left: 10%;
+                top: 25%;
+                height: 300px;
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 321px) {
+            #sp-lightbox img {
+                left: 10%;
+                top: 25%;
+                height: 300px;
+                width: 300px;
+            }
+        }
+    </style>
+{% endblock %}
+{% block content %}
+
+    <!-- single product start  -->
+    <div class="container products thetop">
+        <ol class="breadcrumb" itemtype="http://schema.org/BreadcrumbList">
+{#            <li class="breadcrumb-item" itemscope="" itemtype="http://schema.org/ListItem">#}
+{#                <a href="/category/{{ product.main_category.name }}" itemprop="url">#}
+{#                    <span class="breadcrumb-item" itemprop="title">{{ product.main_category.name }}</span>#}
+{#                </a>#}
+{#            </li>#}
+            {#            <li class="breadcrumb-item" itemscope="" itemtype="http://schema.org/ListItem">#}
+            {#                <a href="/category/bathroom/subcategory/basin-faucets" itemprop="url">#}
+            {#                    <span class="breadcrumb-item" itemprop="title">Basin-faucets</span>#}
+            {#                </a>#}
+            {#            </li>#}
+{#            <li class="breadcrumb-item" itemscope="" itemtype="http://schema.org/ListItem">#}
+            {#                <span>{{ product.sku }}</span>#}
+            {#            </li>#}
+        </ol>
+        <div class="col-md-12" id="list">
+            <div class="row prod-list" style="margin: 0px">
+
+                <div class="card col-sm-5">
+                    <div class="card-body">
+                        <div style="max-height: 300px; width: 300px;">
+                            <div class="sp-wrap sp-non-touch" style="display: inline-block;">
+                                <div id="sp-lightbox"><img class="img img-thumbnail" src="{{ product.image.url }}">
+                                </div>
+
+                                <div class="sp-large">
+                                    <a id="clickme" class=".sp-current-big zoom"
+                                       style="background-image: url({{ product.image.url }}"
+                                       onmousemove='zoom(event)'><img id="product_image"
+                                                                      class="custom-zoom card-img-top prodpage-img"
+                                                                      style="margin-left: auto;margin-right:auto;"
+                                                                      src="{{ product.image.url }}"
+                                                                      alt="Glyde  4&quot; Basin Faucet "></a>
+
+                                </div>
+                            </div>
+
+                            <script>
+                                document.getElementById('product_image').addEventListener('click', () => {
+                                    console.log("opening");
+                                    document.getElementById('sp-lightbox').style.display = "block";
+                                })
+
+                                document.getElementById('sp-lightbox').addEventListener('click', () => {
+                                    console.log("closing");
+                                    document.getElementById('sp-lightbox').style.display = "none";
+                                })
+                            </script>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card col-sm-6" style="margin-left:auto; margin-right: 50px;">
+                    <div class="card-body" style="margin:auto 20px auto;">
+                        <div class="col-sm-10">
+                            <p>
+                                <span>
+                  <b>{{ product.brand }}</b>
+                </span>
+                            </p>
+                            <p>Glyde 4" Basin Faucet </p>
+                        </div>
+                        <div class="col-sm-12">
+                            <p class="card-text price" style="font-size: 16px;">SKU: {{ product.sku }}</p>
+                            <ul style="list-style: none;width:200px; padding-left:0;" class="">
+                                <li style="display: inline-flex">
+                                    <p style="font-size: 16px;">Finish: </p>
+                                </li>
+                                {% for finish in finishes %}
+                                    <li style="display:inline;">
+                                        <img src="/media/finishes/{{ finish }}.png"
+                                             style="width:25px;height:25px; border-radius: 25px; cursor: pointer;"
+                                             alt="chrome" title="{{ finish }}">
+                                    </li>
+                                {% endfor %}
+                                {#                                <li style="display:inline;">#}
+                                {#                                    <img src="http://d1z9ehtk9rps9k.cloudfront.net/finish/brushed-nickel.png"#}
+                                {#                                         style="width:25px;height:25px; border-radius: 25px; cursor: pointer;"#}
+                                {#                                         alt="brushed-nickel" title="brushed-nickel">#}
+                                {#                                </li>#}
+                            </ul>
+                            <p class="card-text price" style="font-size: 16px;">{{ product.description }}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- single product end  -->
+
+
+{% endblock %}

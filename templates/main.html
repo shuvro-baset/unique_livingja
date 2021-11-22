@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+{% load static i18n %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-site-verification" content="x-yIsyN67gjyaAJNZ1nl9GYODhwP9-c9AkLCWuC_-fQ"/>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static '/asset/app.css' %}">
+    <link rel="stylesheet" href="{% static '/asset/smoothproducts.css' %}">
+    <link rel="stylesheet" href="{% static '/asset/custom.css' %}">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <title> Unique Living</title>
+
+
+    {% block headblock %}
+
+    {% endblock %}
+    <link rel="icon" href="http://d1z9ehtk9rps9k.cloudfront.net/logos/uniquefavicon.png" type="image/png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148378916-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-148378916-1');
+
+    </script>
+
+    <script>
+    $(document).ready(function () {
+      var url = window.location;
+      $('ul.navbar-nav a[href="' + url + '"]').parent().addClass('active');
+      $('ul.navbar-nav a').filter(function () {
+        return this.href == url;
+      }).parent().addClass('active');
+    });
+
+    </script>
+
+
+</head>
+<body>
+
+{% include 'header.html' %}
+{% block content %}
+
+{% endblock content %}
+{% include 'footer.html' %}
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+          $('#back-to-top').fadeIn();
+        } else {
+          $('#back-to-top').fadeOut();
+        }
+      });
+      // scroll body to 0px on click
+      $('#back-to-top').click(function () {
+        $('#back-to-top').tooltip('hide');
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+
+      $('#back-to-top').tooltip('show');
+
+    });
+  </script>
+
+{#  <script>#}
+{#    window.onload = function () {#}
+{#      const featured = new Vue({#}
+{#        el: '#featured',#}
+{#        data: {#}
+{#          products: [#}
+{#            {#}
+{#              "sku": "126151",#}
+{#              "category": "bathroom",#}
+{#              "finish": [#}
+{#                ""#}
+{#              ],#}
+{#              "name": " Sansa Vanity",#}
+{#              "Wholesale Price": "",#}
+{#              "brand": "ROYO",#}
+{#              "Price": "",#}
+{#              "status": "",#}
+{#              "addcategory": "",#}
+{#              "supcategory": "",#}
+{#              "image": "http://d1z9ehtk9rps9k.cloudfront.net/126151.jpg",#}
+{#              "subcategory": "vanities",#}
+{#              "url": "/category/bathroom/subcategory/vanities/126151"#}
+{##}
+{#            },#}
+{#            {#}
+{#              "sku": "125450",#}
+{#              "category": "bathroom",#}
+{#              "finish": [#}
+{#                ""#}
+{#              ],#}
+{#              "name": "Onix Vanity",#}
+{#              "Wholesale Price": "",#}
+{#              "brand": "ROYO",#}
+{#              "Price": "",#}
+{#              "status": "",#}
+{#              "addcategory": "",#}
+{#              "supcategory": "",#}
+{#              "image": "http://d1z9ehtk9rps9k.cloudfront.net/125450.jpg",#}
+{#              "subcategory": "vanities",#}
+{#              "url": "/category/bathroom/subcategory/vanities/125450"#}
+{#            },#}
+{#            {#}
+{#              "sku": "33.300.02",#}
+{#              "category": "bathroom",#}
+{#              "finish": [#}
+{#                ""#}
+{#              ],#}
+{#              "name": "Delta Linear Drain",#}
+{#              "Wholesale Price": "",#}
+{#              "brand": "DELTA",#}
+{#              "Price": "",#}
+{#              "status": "",#}
+{#              "addcategory": "showers",#}
+{#              "supcategory": "shower-drains",#}
+{#              "image": "http://d1z9ehtk9rps9k.cloudfront.net/3330002.jpg",#}
+{#              "subcategory": "",#}
+{#              "url": "/category/bathroom/addcategory/showers/supcategory/shower-drains/33.300.02"#}
+{#            },#}
+{#            {#}
+{#              "sku": "WA0000",#}
+{#              "category": "commercial",#}
+{#              "finish": [#}
+{#                "white"#}
+{#              ],#}
+{#              "name": "VK-4008 soap or hand sanitizer dispenser",#}
+{#              "Wholesale Price": "",#}
+{#              "brand": "VIEANY",#}
+{#              "Price": "",#}
+{#              "status": "",#}
+{#              "addcategory": "",#}
+{#              "supcategory": "",#}
+{#              "image": "http://d1z9ehtk9rps9k.cloudfront.net/WA0000.jpg",#}
+{#              "subcategory": "soap-dispenser",#}
+{#              "url": "/category/commercial/WA0000"#}
+{#            },#}
+{#            {#}
+{#              "sku": "27630000",#}
+{#              "category": "bathroom",#}
+{#              "finish": [#}
+{#                "chrome"#}
+{#              ],#}
+{#              "name": "Croma E Showerpipe 280 1jet with thermostat",#}
+{#              "Wholesale Price": "",#}
+{#              "brand": "HANSGROHE",#}
+{#              "Price": "",#}
+{#              "status": "",#}
+{#              "addcategory": "",#}
+{#              "supcategory": "",#}
+{#              "image": "http://d1z9ehtk9rps9k.cloudfront.net/27630000.jpg",#}
+{#              "subcategory": "shower",#}
+{#              "url": "/category/bathroom/27630000"#}
+{#            },#}
+{#            {#}
+{#              "sku": "71133000",#}
+{#              "category": "bathroom",#}
+{#              "finish": [#}
+{#                "chrome"#}
+{#              ],#}
+{#              "name": "Logis 3-hole basin mixer",#}
+{#              "Wholesale Price": "",#}
+{#              "brand": "HANSGROHE",#}
+{#              "Price": "",#}
+{#              "status": "",#}
+{#              "addcategory": "",#}
+{#              "supcategory": "",#}
+{#              "image": "http://d1z9ehtk9rps9k.cloudfront.net/71133000.png",#}
+{#              "subcategory": "faucets",#}
+{#              "url": "/category/bathroom/71133000"#}
+{#            },#}
+{##}
+{#          ]#}
+{#        },#}
+{#      })#}
+{#    }#}
+{#  </script>#}
+
+  <script>
+    $(function () {
+      $('.prodimg').on('click', function () {
+        $('.enlargeImageModalSource').attr('src', $(this).attr('src'));
+        $('.enlargeName').attr('html', $(this).attr('data-productname'));
+        $('.enlargeName').text($(this).attr('data-productname'));
+        $('#enlargeImageModal').modal('show');
+      });
+    });
+  </script>
+
+  <script type="text/javascript" src="{% static '/asset/smoothproducts.min.js' %}"></script>
+  <script type="text/javascript">
+    /* wait for images to load */
+    $(window).load(function () {
+      $('.sp-wrap').smoothproducts();
+    });
+  </script>
+
+<!-- zoom in out script  -->
+    <script>
+        function zoom(e) {
+            var zoomer = e.currentTarget;
+            e.offsetX ? offsetX = e.offsetX : offsetX = e.touches[0].pageX;
+            e.offsetY ? offsetY = e.offsetY : offsetX = e.touches[0].pageX;
+            x = offsetX / zoomer.offsetWidth * 100;
+            y = offsetY / zoomer.offsetHeight * 100;
+            zoomer.style.backgroundPosition = x + '% ' + y + '%';
+        }
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  </script>
+  <script src="https://fastcdn.org/Respond/1.4.2/respond.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr.js"></script>
+
+</body>
+</html>

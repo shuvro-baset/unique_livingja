@@ -1,0 +1,195 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <div class="modal fade mb-2" id="feedback" tabindex="-1" role="dialog" aria-labelledby="enlargeImageModal"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" style="position: relative; top: 35%; left:10%" role="document">
+            <div class="modal-content"
+                 style="width: 600px; height: 300px; background: orange url('http://d1z9ehtk9rps9k.cloudfront.net/logos/UniqueLogo.png'); background-size: cover;">
+                <div style="width:100%;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size:20px;">
+                        X
+                    </button>
+                </div>
+                <div style="width:90%;height:50%; position: relative; bottom: -25%; left: 5%;">
+                    <!-- Begin MailChimp Signup Form -->
+                    <link href="{% static 'asset/horizontal-slim-10_7.css' %}" rel="stylesheet" type="text/css">
+                    <style type="text/css">
+                        #mc_embed_signup {
+                            background: #d46b44;
+                            clear: left;
+                            font: 14px;
+                            width: 100%;
+                        }
+
+                        ,
+                        /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+                           We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+                    </style>
+                    <div id="mc_embed_signup">
+                        <form action="/mailing" method="post" id="mc-embedded-subscribe-form"
+                              name="mc-embedded-subscribe-form" class="validate" novalidate="">
+                            <div id="mc_embed_signup_scroll">
+                                <label for="mce-EMAIL"> Subscribe to our mailing list</label>
+                                <input type="email" value="" name="email" style="width:95%" class="email" id="mce-EMAIL"
+                                       placeholder="email address" required="">
+                                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                <div class="clear"><input type="submit" class="btn btn-dark mt-2"></div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!--End mc_embed_signup-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container products thetop">
+        <ol class="breadcrumb" itemtype="http://schema.org/BreadcrumbList">
+        </ol>
+        <h1 class="text-center mt-3 capitalize" id="#top-section">Hardware</h1>
+        <hr class="hr-below-title mb-4">
+        <div class="float-left sticky-top d-none d-lg-block">
+            <div>
+                <ul class="justify-content-center list-inline">
+                    <li class="nav-item">
+                        <a class="nav-link categories">
+                            <h5>Categories: </h5>
+                        </a>
+                    </li>
+                    {% for sub in products %}
+                        <li class="nav-item">
+                            <a class="nav-link categories cat-up"
+                               href="{% url 'sub_category' sub.main_category.name sub.sub_category.name %}">{{ sub.sub_category.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="mb-2">
+                <ul class="justify-content-center list-inline">
+                    <li class="nav-item">
+                        <a class="nav-link categories">
+                            <h5>Brands: </h5>
+                        </a>
+                    </li>
+                    {% for brand in products %}
+                        <li class="nav-item">
+                            <a class="nav-link categories"
+                               href="{% url 'brands' brand.main_category.name brand.brand %}">{{ brand.brand }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-12" id="list">
+            <div class="row prod-list" style="margin: 0px">
+                {% for product in page_obj %}
+                    <div class="card text-center col-sm-4" style="width: 22rem;">
+                        <a href="{% url 'single_product' product.main_category.name product.sku %}">
+                            <div class="card-body" style="text-align:center;">
+                                <div style="height: 250px; width: 250px;">
+                                    <img class="card-img-top card-img prodimg"
+                                         style="position: relative;margin-left: auto;margin-right:auto;"
+                                         src="{{ product.image.url }}"
+                                         alt="{{ product.name }}"
+                                         data-productname="{{ product.name }}">
+                                </div>
+                                <div><p class="card-title card-title-prod">
+                                    <span><b>{{ product.brand }}</b> {{ product.name }}</span>
+                                </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+
+                <div class="container mt-20">
+                    <div class="pagination pagination-centered">
+                        <ul>
+                            <li class="disabled">
+                                <a href="?p=1">First</a>
+                            </li>
+
+                            <li class="disabled">
+                                <a href="?p=1">Prev</a>
+                            </li>
+
+                            <li class="active">
+                                <a href="?p=1">1</a>
+                            </li>
+
+                            <li>
+                                <a href="?p=2">2</a>
+                            </li>
+
+                            <li>
+                                <a href="?p=3">3</a>
+                            </li>
+
+                            <li>
+                                <a href="?p=4">4</a>
+                            </li>
+
+                            <li>
+                                <a href="?p=2">Next</a>
+                            </li>
+
+                            <li>
+                                <a href="?p=4">Last</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pagination">
+		<span class="step-links">
+			{% if page_obj.has_previous %}
+                <a href="?page=1" class="first">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="previous">previous</a>
+            {% endif %}
+
+            <span class="current">
+				<span class="page">Page</span> <span>{{ page_obj.number }}</span> <span
+                    class="page">of</span> <span>{{ page_obj.paginator.num_pages }}</span>
+			</span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="next">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="last">last &raquo;</a>
+            {% endif %}
+		</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="enlargeImageModal" tabindex="-1" role="dialog" aria-labelledby="enlargeImageModal"
+         aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="enlargeName"></p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="text-align: center;">
+                    <img src="" class="enlargeImageModalSource" style="width: 75%;max-height:500px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <a id="back-to-top" href="#" class="btn btn-warning btn-sm back-to-top" role="button" title="" data-toggle="tooltip"
+       data-placement="left" data-original-title="" style="display: block;">
+        <i class="fal fa-arrow-circle-up"></i>Back-to-Top</a>
+    </div>
+
+{% endblock %}

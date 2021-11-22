@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+    <div style="text-align: center">
+        <h1>We're Sorry</h1>
+        <p>We cannot seem to find any products that match
+        <h3><strong>{{ fullQuery }}</strong></h3> Please try again using a
+        more
+        specific term.
+        </p>
+        <img src="http://d1z9ehtk9rps9k.cloudfront.net/here.jpg" alt="404" class="mb-5" style="width: 80%">
+
+    </div>
+
+
+{% endblock %}

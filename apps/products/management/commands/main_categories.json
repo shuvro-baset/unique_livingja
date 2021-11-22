@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "name": "enclosure"
+    },
+    {
+      "name": "closet"
+    },
+    {
+      "name": "hardware"
+    },
+    {
+      "name": "kitchen"
+    },
+    {
+      "name": "commercial"
+    },
+    {
+      "name": "bathroom"
+    }
+  ]
+}
