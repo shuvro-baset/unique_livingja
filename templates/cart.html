@@ -32,8 +32,10 @@
                         <td>book</td>
                         <td>$120</td>
                         <td>
-                            <button id="product_id">+</button>
-                            <input id="input-add" type="number" min="1" max="999"/>
+                            <button id="add-btn">+</button>
+                            <input id="input-add" type="number" min="1" value="0" max="999"/>
+                            <button id="minus-btn">-</button>
+
                         </td>
                         <td>Mark</td>
                         <td>Otto</td>
@@ -94,10 +96,22 @@
         {#        }#}
         {#    }#}
 
-    console.log("hello world");
-        document.getElementById('product_id').addEventListener("click", ()=> {
-            const increase = document.getElementById('input-add').value +=1
-        } )
+        console.log("hello world");
+        document.getElementById('add-btn').addEventListener("click", () => {
+            let increase = parseInt(document.getElementById('input-add').value);
+            increase = increase + 1;
+            document.getElementById('input-add').value = increase;
+            console.log(increase)
+        })
+        document.getElementById('minus-btn').addEventListener("click", () => {
+            let increase = parseInt(document.getElementById('input-add').value);
+            increase = increase - 1;
+            if (increase===0){
+                return
+            }
+            document.getElementById('input-add').value = increase;
+            console.log(increase)
+        })
     </script>
 
 {% endblock %}
