@@ -34,11 +34,15 @@
                             <td>${{ cart.product.price }}</td>
                             <td class="d-flex justify-content-center">
                                 {#                                <input value="{{ cart.quantity }}" type="number" min="1" max="999"/>#}
-                                <button class="mx-2 btn" onclick="addBtn({{ cart.product.id }})" id="add-btn{{ cart.product.id }}">+
+                                <button class="mx-2 btn"
+                                        onclick="addBtn({{ cart.product.id }}, {{ cart.product.price }})"
+                                        id="add-btn{{ cart.product.id }}">+
                                 </button>
                                 <input class="mx-2" id="input-add{{ cart.product.id }}" type="number" min="1"
                                        value="{{ cart.quantity }}" max="999"/>
-                                <button class="mx-2 btn" onclick="minusBtn({{ cart.product.id }})" id="minus-btn{{ cart.product.id }}">
+                                <button class="mx-2 btn"
+                                        onclick="minusBtn({{ cart.product.id }}, {{ cart.product.price }})"
+                                        id="minus-btn{{ cart.product.id }}">
                                     -
                                 </button>
                             </td>
@@ -97,22 +101,23 @@
 
     <script>
 
-
-        console.log("hello world");
-        const addBtn = (id) => {
-                console.log("clicked +", id)
-                let increase = parseInt(document.getElementById(`input-add${id}`).value);
-                increase++;
-                document.getElementById(`input-add${id}`).value = increase;
+        const addBtn = (id, price) => {
+            let increase = parseInt(document.getElementById(`input-add${id}`).value);
+            increase++;
+            document.getElementById(`input-add${id}`).value = increase;
+            const total_price = price*increase;
+            document.getElementById(`price_${id}`).innerHTML = '$' + total_price;
         }
-        const minusBtn = (id) => {
 
-                let increase = parseInt(document.getElementById(`input-add${id}`).value);
-                increase = increase - 1;
-                if (increase === 0) {
-                    return
-                }
-                document.getElementById(`input-add${id}`).value = increase;
+        const minusBtn = (id, price) => {
+            let increase = parseInt(document.getElementById(`input-add${id}`).value);
+            increase = increase - 1;
+            if (increase === 0) {
+                return
+            }
+            document.getElementById(`input-add${id}`).value = increase;
+            const total_price = price*increase;
+            document.getElementById(`price_${id}`).innerHTML = '$' + total_price;
         }
     </script>
 {% endblock %}
