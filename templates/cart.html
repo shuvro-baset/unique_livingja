@@ -34,9 +34,13 @@
                             <td>${{ cart.product.price }}</td>
                             <td>
                                 {#                                <input value="{{ cart.quantity }}" type="number" min="1" max="999"/>#}
-                                <button id="add-btn">+</button>
-                                <input id="input-add" type="number" min="1" value="{{ cart.quantity }}" max="999"/>
-                                <button id="minus-btn">-</button>
+                                <button onclick="addBtn({{ cart.product.id }})" id="add-btn{{ cart.product.id }}">+
+                                </button>
+                                <input id="input-add{{ cart.product.id }}" type="number" min="1"
+                                       value="{{ cart.quantity }}" max="999"/>
+                                <button onclick="minusBtn({{ cart.product.id }})" id="minus-btn{{ cart.product.id }}">
+                                    -
+                                </button>
                             </td>
                             <td id="price_{{ cart.product.id }}"></td>
                             <script>
@@ -95,20 +99,20 @@
 
 
         console.log("hello world");
-        document.getElementById('add-btn').addEventListener("click", () => {
-            let increase = parseInt(document.getElementById('input-add').value);
-            increase = increase + 1;
-            document.getElementById('input-add').value = increase;
-            console.log(increase)
-        })
-        document.getElementById('minus-btn').addEventListener("click", () => {
-            let increase = parseInt(document.getElementById('input-add').value);
-            increase = increase - 1;
-            if (increase === 0) {
-                return
-            }
-            document.getElementById('input-add').value = increase;
-            console.log(increase)
-        })
+        const addBtn = (id) => {
+                console.log("clicked +", id)
+                let increase = parseInt(document.getElementById(`input-add${id}`).value);
+                increase++;
+                document.getElementById(`input-add${id}`).value = increase;
+        }
+        const minusBtn = (id) => {
+
+                let increase = parseInt(document.getElementById(`input-add${id}`).value);
+                increase = increase - 1;
+                if (increase === 0) {
+                    return
+                }
+                document.getElementById(`input-add${id}`).value = increase;
+        }
     </script>
 {% endblock %}
