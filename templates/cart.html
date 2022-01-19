@@ -32,13 +32,13 @@
                             </td>
                             <td>{{ cart.product.name }}</td>
                             <td>${{ cart.product.price }}</td>
-                            <td>
+                            <td class="d-flex justify-content-center">
                                 {#                                <input value="{{ cart.quantity }}" type="number" min="1" max="999"/>#}
-                                <button onclick="addBtn({{ cart.product.id }})" id="add-btn{{ cart.product.id }}">+
+                                <button class="mx-2 btn" onclick="addBtn({{ cart.product.id }})" id="add-btn{{ cart.product.id }}">+
                                 </button>
-                                <input id="input-add{{ cart.product.id }}" type="number" min="1"
+                                <input class="mx-2" id="input-add{{ cart.product.id }}" type="number" min="1"
                                        value="{{ cart.quantity }}" max="999"/>
-                                <button onclick="minusBtn({{ cart.product.id }})" id="minus-btn{{ cart.product.id }}">
+                                <button class="mx-2 btn" onclick="minusBtn({{ cart.product.id }})" id="minus-btn{{ cart.product.id }}">
                                     -
                                 </button>
                             </td>

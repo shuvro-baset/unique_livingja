@@ -400,3 +400,7 @@ def checkout(request):
     #     #     "total": total,
     #     # }
     #     return render(request, 'cart.html')
+
+
+def payment(request):
+    return render(request, 'payment.html')
