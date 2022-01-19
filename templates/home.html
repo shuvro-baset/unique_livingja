@@ -24,7 +24,7 @@
                     {#                    {% for slider in first_slider %}#}
                     <div class="carousel-item active">
                         <a href="{{ first_slider.category_url }}">
-                            <picture style="float-left"></picture>
+                            <picture></picture>
                             <img srcset="{{ first_slider.image.url }}"
                                  alt="responsive image"
                                  class="d-block img-fluid">
@@ -35,7 +35,7 @@
                     {% for slider in sliders %}
                         <div class="carousel-item">
                             <a href="{{ slider.category_url }}">
-                                <picture style="float-left"></picture>
+                                <picture></picture>
                                 <img srcset="{{ slider.image.url }}"
                                      alt="responsive image"
                                      class="d-block img-fluid">

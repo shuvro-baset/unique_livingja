@@ -2,138 +2,139 @@
 {% load static %}
 
 {% block content %}
-<div class="container products thetop">
-    <ol class="breadcrumb" itemtype="http://schema.org/BreadcrumbList">
-    </ol>
-    <h1 class="text-center mt-3 capitalize" id="#top-section">{{ main_category }} {{ addcategory_name }}</h1>
+    <div class="container products thetop">
+        <ol class="breadcrumb" itemtype="http://schema.org/BreadcrumbList">
+        </ol>
+        <h1 class="text-center mt-3 capitalize" id="#top-section">{{ main_category }} {{ addcategory_name }}</h1>
 
-    <hr class="hr-below-title mb-4">
-    <div class="float-left sticky-top d-none d-lg-block">
-        <div>
-            <ul class="justify-content-center list-inline">
-                <li class="nav-item">
-                    <a class="nav-link categories">
-                        <h5>Categories:</h5>
-                    </a>
-                </li>
-                {% for category in products %}
-                {% if category.add_category.name != '' and category.sup_category.name != '' %}
-                <li class="nav-item">
-                    <a class="nav-link categories cat-up"
-                       {# href="/category/bathroom/subcategory/vanities">{{ sub }}</a>#}
-                    href="{% url 'add_sup_category' category.main_category.name category.add_category.name
-                    category.sup_category.name %}">{{ category.sup_category.name }}</a>
-                </li>
-                {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="mb-2">
-            <ul class="justify-content-center list-inline">
-                <li class="nav-item">
-                    <a class="nav-link categories">
-                        <h5>Brands: </h5>
-                    </a>
-                </li>
-                {% for brand in products %}
-                {% if brand.add_category.name != '' and brand.brand != '' %}
-                <li class="nav-item">
-                    <a class="nav-link categories"
-                       href="{% url 'add_sup_brand' brand.main_category.name brand.add_category.name brand.brand %}">{{
-                        brand.brand }}</a>
-                </li>
-                {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-    <div class="col-md-12" id="list">
-        <div class="row prod-list" style="margin: 0px">
-            {% for product in page_obj %}
-            <div class="card text-center col-sm-4" style="width: 22rem;">
-                <a href="{% url 'single_product' product.main_category.name product.sku %}">
-                    <div class="card-body" style="text-align:center;">
-                        <div style="height: 250px; width: 250px;">
-                            <img class="card-img-top card-img prodimg"
-                                 style="position: relative;margin-left: auto;margin-right:auto;"
-                                 src="{{ product.image.url }}"
-                                 alt="{{ product.name }}"
-                                 data-productname="{{ product.name }}">
-                        </div>
-                        <div>
-                            <p class="card-title card-title-prod">
-                                <span><b>{{ product.brand }}</b> {{ product.name }}</span>
-                            </p>
-                        </div>
-                    </div>
-                </a>
+        <hr class="hr-below-title mb-4">
+        <div class="float-left sticky-top d-none d-lg-block">
+            <div>
+                <ul class="justify-content-center list-inline">
+                    <li class="nav-item">
+                        <a class="nav-link categories">
+                            <h5>Categories:</h5>
+                        </a>
+                    </li>
+                    {% for category in products %}
+                        {% if category.add_category.name != '' and category.sup_category.name != '' %}
+                            <li class="nav-item">
+                                <a class="nav-link categories cat-up"
+                                        {# href="/category/bathroom/subcategory/vanities">{{ sub }}</a>#}
+                                   href="{% url 'add_sup_category' category.main_category.name category.add_category.name category.sup_category.name %}">{{ category.sup_category.name }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
-            {% endfor %}
-
-            <div class="container mt-20">
-<!--                <div class="pagination pagination-centered">-->
-<!--                    <ul>-->
-<!--                        <li class="disabled">-->
-<!--                            <a href="?p=1">First</a>-->
-<!--                        </li>-->
-
-<!--                        <li class="disabled">-->
-<!--                            <a href="?p=1">Prev</a>-->
-<!--                        </li>-->
-
-<!--                        <li class="active">-->
-<!--                            <a href="?p=1">1</a>-->
-<!--                        </li>-->
-
-<!--                        <li>-->
-<!--                            <a href="?p=2">2</a>-->
-<!--                        </li>-->
-
-<!--                        <li>-->
-<!--                            <a href="?p=3">3</a>-->
-<!--                        </li>-->
-
-<!--                        <li>-->
-<!--                            <a href="?p=4">4</a>-->
-<!--                        </li>-->
-
-<!--                        <li>-->
-<!--                            <a href="?p=5">5</a>-->
-<!--                        </li>-->
-
-<!--                        <li>-->
-<!--                            <a href="?p=2">Next</a>-->
-<!--                        </li>-->
-
-<!--                        <li>-->
-<!--                            <a href="?p=21">Last</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-
-                <div class="pagination pagination-centered">
-                    <ul>
-                        <!-- <span class="step-links">-->
-                        {% if page_obj.has_previous %}
-                        <li><a href="?page=1" class="first">&laquo; first</a></li>
-                        <li><a href="?page={{ page_obj.previous_page_number }}" class="previous">previous</a></li>
+            <div class="mb-2">
+                <ul class="justify-content-center list-inline">
+                    <li class="nav-item">
+                        <a class="nav-link categories">
+                            <h5>Brands: </h5>
+                        </a>
+                    </li>
+                    {% for brand in products %}
+                        {% if brand.add_category.name != '' and brand.brand != '' %}
+                            <li class="nav-item">
+                                <a class="nav-link categories"
+                                   href="{% url 'add_sup_brand' brand.main_category.name brand.add_category.name brand.brand %}">
+                                    {{ brand.brand }}</a>
+                            </li>
                         {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12" id="list">
+            <div class="row prod-list" style="margin: 0px">
+                {% for product in page_obj %}
+                    <div class="card text-center col-sm-4" style="width: 22rem;">
+                        <a href="{% url 'single_product' product.main_category.name product.sku %}">
+                            <div class="card-body" style="text-align:center;">
+                                <div style="height: 250px; width: 250px;">
+                                    <img class="card-img-top card-img prodimg"
+                                         style="position: relative;margin-left: auto;margin-right:auto;"
+                                         src="{{ product.image.url }}"
+                                         alt="{{ product.name }}"
+                                         data-productname="{{ product.name }}">
+                                </div>
+                                <div>
+                                    <p class="card-title card-title-prod">
+                                        <span><b>{{ product.brand }}</b> {{ product.name }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
 
-                        <!-- <span class="current">-->
-                        <li><span class="page">Page</span> <span>{{ page_obj.number }}</span></li>
-                        <li><span class="page">of</span> <span>{{ page_obj.paginator.num_pages }}</span></li>
-                        <!--  </span>-->
+                <div class="container mt-20">
+                    <!--                <div class="pagination pagination-centered">-->
+                    <!--                    <ul>-->
+                    <!--                        <li class="disabled">-->
+                    <!--                            <a href="?p=1">First</a>-->
+                    <!--                        </li>-->
 
-                        {% if page_obj.has_next %}
-                        <li><a href="?page={{ page_obj.next_page_number }}" class="next">next</a></li>
-                        <li><a href="?page={{ page_obj.paginator.num_pages }}" class="last">last &raquo;</a></li>
-                        {% endif %}
-                        <!--   </span>-->
-                    </ul>
+                    <!--                        <li class="disabled">-->
+                    <!--                            <a href="?p=1">Prev</a>-->
+                    <!--                        </li>-->
+
+                    <!--                        <li class="active">-->
+                    <!--                            <a href="?p=1">1</a>-->
+                    <!--                        </li>-->
+
+                    <!--                        <li>-->
+                    <!--                            <a href="?p=2">2</a>-->
+                    <!--                        </li>-->
+
+                    <!--                        <li>-->
+                    <!--                            <a href="?p=3">3</a>-->
+                    <!--                        </li>-->
+
+                    <!--                        <li>-->
+                    <!--                            <a href="?p=4">4</a>-->
+                    <!--                        </li>-->
+
+                    <!--                        <li>-->
+                    <!--                            <a href="?p=5">5</a>-->
+                    <!--                        </li>-->
+
+                    <!--                        <li>-->
+                    <!--                            <a href="?p=2">Next</a>-->
+                    <!--                        </li>-->
+
+                    <!--                        <li>-->
+                    <!--                            <a href="?p=21">Last</a>-->
+                    <!--                        </li>-->
+                    <!--                    </ul>-->
+                    <!--                </div>-->
+
+                    <div class="pagination pagination-centered">
+                        <ul>
+                            <!-- <span class="step-links">-->
+                            {% if page_obj.has_previous %}
+                                <li><a href="?page=1" class="first">&laquo; first</a></li>
+                                <li><a href="?page={{ page_obj.previous_page_number }}" class="previous">previous</a>
+                                </li>
+                            {% endif %}
+
+                            <!-- <span class="current">-->
+                            <li><span class="page">Page</span> <span>{{ page_obj.number }}</span></li>
+                            <li><span class="page">of</span> <span>{{ page_obj.paginator.num_pages }}</span></li>
+                            <!--  </span>-->
+
+                            {% if page_obj.has_next %}
+                                <li><a href="?page={{ page_obj.next_page_number }}" class="next">next</a></li>
+                                <li><a href="?page={{ page_obj.paginator.num_pages }}" class="last">last &raquo;</a>
+                                </li>
+                            {% endif %}
+                            <!--   </span>-->
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
 {% endblock %}

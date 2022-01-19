@@ -197,20 +197,21 @@
                     <li class="nav-item font-weight-bold">
                         <a class="nav-link text-dark" href="{% url 'contact' %}">Contact Us</a>
                     </li>
-                    {% if user.is_authenticated %}
                     <li class="nav-item font-weight-bold">
-                        <a class="nav-link text-dark" href="{% url 'logout' %}">Logut</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item font-weight-bold">
-                        <a class="nav-link text-dark" href="{% url 'login' %}">Login</a>
-                    </li>
-                    <li class="nav-item font-weight-bold">
-                        <a class="nav-link text-dark" href="#">
+                        <a class="nav-link text-dark" href="{% url 'cart' %}">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class='badge badge-warning' id='lblCartCount'> 15 </span>
+                            <span class='badge badge-warning' id='lblCartCount'> {{ order_item_count }} </span>
                         </a>
                     </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item font-weight-bold">
+                            <a class="nav-link text-dark" title="Logout" href="{% url 'logout' %}"><i
+                                    style="font-size: 20px" class="fas fa-sign-out-alt"></i></a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item font-weight-bold">
+                            <a class="nav-link text-dark" href="{% url 'login' %}">Login</a>
+                        </li>
                     {% endif %}
                 </ul>
 

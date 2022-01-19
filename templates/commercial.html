@@ -21,8 +21,7 @@
                 {% for sub in products %}
                 <li>
                     <a class="nav-link categories cat-up honey"
-                       href="{% url 'sub_category' sub.main_category.name sub.sub_category.name %}">{{
-                        sub.sub_category.name }}</a>
+                       href="{% url 'sub_category' sub.main_category.name sub.sub_category.name %}">{{sub.sub_category.name }}</a>
                 </li>
                 {% endfor %}
             </ul>

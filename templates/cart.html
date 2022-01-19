@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="mt-3">
-            <button class="btn btn-outline-warning text-dark">Continue Shopping</button>
+            <a class="btn btn-outline-warning text-dark" href="{% url 'home' %}">Continue Shopping</a>
         </div>
         <div class="mt-3 mb-5 row">
             <div class="col-lg-12">
@@ -17,84 +17,82 @@
                         <th style="width: 20%" scope="col">Item</th>
                         <th style="width: 15%" scope="col">Price</th>
                         <th style="width: 10%" scope="col">Quantity</th>
-                        <th style="width: 15%" scope="col">GCT</th>
                         <th style="width: 10%" scope="col">Total</th>
                         <th style="width: 10%" scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="text-center">
-                        <td>
-                            <img class="img-fluid" style="width: 120px; height: 120px;"
-                                 src="https://www.salgar.net/cdnassets/24553-Ciclograma-lavabo-de-posar-VARMEGA-515-porcelana-blanca_l.jpg"
-                                 alt="#">
-                        </td>
-                        <td>book</td>
-                        <td>$120</td>
-                        <td>
-                            <button id="add-btn">+</button>
-                            <input id="input-add" type="number" min="1" value="0" max="999"/>
-                            <button id="minus-btn">-</button>
-
-                        </td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td><i style="color: red" class="fas fa-times"></i></td>
-                    </tr>
-                    <tr class="text-center">
-                        <td>
-                            <img class="img-fluid" style="width: 120px; height: 120px;"
-                                 src="https://www.salgar.net/cdnassets/24553-Ciclograma-lavabo-de-posar-VARMEGA-515-porcelana-blanca_l.jpg"
-                                 alt="">
-                        </td>
-                        <td>book</td>
-                        <td>$120</td>
-                        <td class="d-flex justify-content-center">
-                            <button onclick='productIncreaseDecrease("phone", false)' class="btn btn-default"><i
-                                    class="fas fa-minus"></i></button>
-                            <input id="phone-count" type="number" min="1" max="999" class="" value="1">
-                            <button onclick='productIncreaseDecrease("phone", true)' class="btn btn-default"><i
-                                    class="fas fa-plus"></i></button>
-                        </td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td><i style="color: red" class="fas fa-times"></i></td>
-                    </tr>
-
+                    {% for cart in order_item %}
+                        <tr class="text-center">
+                            <td>
+                                <a href="{% url 'single_product' cart.product.main_category cart.product.sku %}?edit=1"><img
+                                        class="img-fluid" style="width: 120px; height: 120px;"
+                                        src="{{ cart.product.image.url }}"
+                                        alt="#"></a>
+                            </td>
+                            <td>{{ cart.product.name }}</td>
+                            <td>${{ cart.product.price }}</td>
+                            <td>
+                                {#                                <input value="{{ cart.quantity }}" type="number" min="1" max="999"/>#}
+                                <button id="add-btn">+</button>
+                                <input id="input-add" type="number" min="1" value="{{ cart.quantity }}" max="999"/>
+                                <button id="minus-btn">-</button>
+                            </td>
+                            <td id="price_{{ cart.product.id }}"></td>
+                            <script>
+                                let price_{{ cart.product.id }} =
+                                {{ cart.product.price }} *
+                                {{ cart.quantity }};
+                                document.getElementById("price_{{ cart.product.id }}").innerHTML = '$' + price_{{ cart.product.id }};
+                            </script>
+                            <td><a href="{% url 'remove_cart' cart.id %}"><i style="color: red"
+                                                                             class="fas fa-trash float-right"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {#                    <tr class="text-center">#}
+                    {#                        <td>#}
+                    {#                            <img class="img-fluid" style="width: 120px; height: 120px;"#}
+                    {#                                 src="https://www.salgar.net/cdnassets/24553-Ciclograma-lavabo-de-posar-VARMEGA-515-porcelana-blanca_l.jpg"#}
+                    {#                                 alt="">#}
+                    {#                        </td>#}
+                    {#                        <td>book</td>#}
+                    {#                        <td>$120</td>#}
+                    {#                        <td>#}
+                    {#                            <input type="number" min="1" max="999"/>#}
+                    {#                        </td>#}
+                    {#                        <td>Mark</td>#}
+                    {#                        <td>Otto</td>#}
+                    {#                        <td><i style="color: red" class="fas fa-times"></i></td>#}
+                    {#                    </tr>#}
+                    {#                    <tr class="text-center">#}
+                    {#                        <td>#}
+                    {#                            <img class="img-fluid" style="width: 120px; height: 120px;"#}
+                    {#                                 src="https://www.salgar.net/cdnassets/24553-Ciclograma-lavabo-de-posar-VARMEGA-515-porcelana-blanca_l.jpg"#}
+                    {#                                 alt="">#}
+                    {#                        </td>#}
+                    {#                        <td>book</td>#}
+                    {#                        <td>$120</td>#}
+                    {#                        <td>#}
+                    {#                            <input type="number" min="1" max="999"/>#}
+                    {#                        </td>#}
+                    {#                        <td>Mark sdfsdf sdf sdf sdf</td>#}
+                    {#                        <td>Otto</td>#}
+                    {#                        <td><i style="color: red" class="fas fa-times"></i></td>#}
+                    {#                    </tr>#}
                     </tbody>
                 </table>
             </div>
 
         </div>
+        <div class="mt-3 text-right">
+            <a class="btn btn-outline-warning text-dark" href="{% url 'checkout' %}">Checkout</a>
+        </div>
     </div>
 
 
     <script>
-        {#function increaseDecrease(productId, isIncrease) {#}
-        {#    var currentInputValue = parseInt(document.getElementById(productId + '-count').value);#}
-        {#    if (isIncrease) {#}
-        {#        currentInputValue = currentInputValue + 1;#}
-        {#        document.getElementById(productId + '-count').value = currentInputValue;#}
-        {#        if (productId == 'phone') {#}
-        {#            var productTotal = 1219 * currentInputValue;#}
-        {#            document.getElementById('phone-total').innerText = '$' + productTotal;#}
-        {#        } else {#}
-        {#            var productTotal = 59 * currentInputValue;#}
-        {#            document.getElementById('case-total').innerText = '$' + productTotal;#}
-        {#        }#}
-        {#    }#}
-        {#    if (isIncrease == false && currentInputValue > 0) {#}
-        {#        currentInputValue = currentInputValue - 1;#}
-        {#        document.getElementById(productId + '-count').value = currentInputValue;#}
-        {#        if (productId == 'phone') {#}
-        {#            var productTotal = 1219 * currentInputValue;#}
-        {#            document.getElementById('phone-total').innerText = '$' + productTotal;#}
-        {#        } else {#}
-        {#            var productTotal = 59 * currentInputValue;#}
-        {#            document.getElementById('case-total').innerText = '$' + productTotal;#}
-        {##}
-        {#        }#}
-        {#    }#}
+
 
         console.log("hello world");
         document.getElementById('add-btn').addEventListener("click", () => {
@@ -106,12 +104,11 @@
         document.getElementById('minus-btn').addEventListener("click", () => {
             let increase = parseInt(document.getElementById('input-add').value);
             increase = increase - 1;
-            if (increase===0){
+            if (increase === 0) {
                 return
             }
             document.getElementById('input-add').value = increase;
             console.log(increase)
         })
     </script>
-
 {% endblock %}

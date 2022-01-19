@@ -30,8 +30,7 @@
                 {% for sub in products %}
                 <li class="nav-item">
                     <a class="nav-link categories honey capitalize"
-                       href="{% url 'sub_category' sub.main_category.name sub.sub_category.name %}">{{
-                        sub.sub_category.name }}</a>
+                       href="{% url 'sub_category' sub.main_category.name sub.sub_category.name %}">{{sub.sub_category.name }}</a>
                 </li>
                 {% endfor %}
             </ul>
@@ -81,8 +80,8 @@
         <ul>
             <!-- <span class="step-links">-->
             {% if page_obj.has_previous %}
-            <li><a href="?page=1" class="first">&laquo; first</a></li>
-            <li><a href="?page={{ page_obj.previous_page_number }}" class="previous">previous</a></li>
+            <li><a href="?page=1&query={{ query_string }}" class="first">&laquo; first</a></li>
+            <li><a href="?page={{ page_obj.previous_page_number }}&query={{ query_string }}" class="previous">previous</a></li>
             {% endif %}
 
             <!-- <span class="current">-->
@@ -91,8 +90,8 @@
             <!--  </span>-->
 
             {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="next">next</a></li>
-            <li><a href="?page={{ page_obj.paginator.num_pages }}" class="last">last &raquo;</a></li>
+            <li><a href="?page={{ page_obj.next_page_number }}&query={{ query_string }}" class="next">next</a></li>
+            <li><a href="?page={{ page_obj.paginator.num_pages }}&query={{ query_string }}" class="last">last &raquo;</a></li>
             {% endif %}
             <!--   </span>-->
         </ul>

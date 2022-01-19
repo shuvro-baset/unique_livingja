@@ -110,17 +110,17 @@
     <!-- single product start  -->
     <div class="container products thetop">
         <ol class="breadcrumb" itemtype="http://schema.org/BreadcrumbList">
-{#            <li class="breadcrumb-item" itemscope="" itemtype="http://schema.org/ListItem">#}
-{#                <a href="/category/{{ product.main_category.name }}" itemprop="url">#}
-{#                    <span class="breadcrumb-item" itemprop="title">{{ product.main_category.name }}</span>#}
-{#                </a>#}
-{#            </li>#}
+            {#            <li class="breadcrumb-item" itemscope="" itemtype="http://schema.org/ListItem">#}
+            {#                <a href="/category/{{ product.main_category.name }}" itemprop="url">#}
+            {#                    <span class="breadcrumb-item" itemprop="title">{{ product.main_category.name }}</span>#}
+            {#                </a>#}
+            {#            </li>#}
             {#            <li class="breadcrumb-item" itemscope="" itemtype="http://schema.org/ListItem">#}
             {#                <a href="/category/bathroom/subcategory/basin-faucets" itemprop="url">#}
             {#                    <span class="breadcrumb-item" itemprop="title">Basin-faucets</span>#}
             {#                </a>#}
             {#            </li>#}
-{#            <li class="breadcrumb-item" itemscope="" itemtype="http://schema.org/ListItem">#}
+            {#            <li class="breadcrumb-item" itemscope="" itemtype="http://schema.org/ListItem">#}
             {#                <span>{{ product.sku }}</span>#}
             {#            </li>#}
         </ol>
@@ -193,10 +193,18 @@
                             </ul>
                             <p class="card-text price" style="font-size: 16px;">{{ product.description }}</p>
 
-                            <form action="">
+                            <form method="post" action="{% url 'add_to_cart' %}">{% csrf_token %}
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <input  type="number" min="1" max="999"/>
-                                    <button class="btn btn-outline-warning mx-2 text-dark" type="submit">Add to Cart</button>
+                                    <input name="product_id" type="number" value="{{ product.id }}" hidden/>
+                                    <input name="absulate_url" type="text" value="{{ request.get_full_path }}" hidden/>
+                                    {% if quantity > 0 %}
+                                        <input name="qty" type="number" min="1" max="999" value="{{ quantity }}"
+                                               required/>
+                                    {% else %}
+                                        <input name="qty" type="number" min="1" max="999" required/>
+                                    {% endif %}
+                                    <button class="btn btn-outline-warning mx-2 text-dark" type="submit">Add to Cart
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -210,5 +218,6 @@
 
     <!-- single product end  -->
 
+    <script type="text/javascript" src="{% static 'asset/cart.js' %}"></script>
 
 {% endblock %}
