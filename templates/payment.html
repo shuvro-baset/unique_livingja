@@ -12,9 +12,18 @@
                 <form class="">
                     <div class="mb-3">
                         <label class="form-label">Card Number</label>
-                        <input type="number" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-dark w-100 mb-3">Submit</button>
+                    <div class="mb-3 payment-div d-flex justify-content-between">
+                        <div class="payment-form">
+                            <input type="text" minlength="16" maxlength="16" placeholder="xxxx xxxx xxxx xxxx">
+                        </div>
+                        <div class="payment-form2">
+                            <input type="text" minlength="2" maxlength="2" placeholder="MM"> /
+                            <input type="text" minlength="4" maxlength="4" placeholder="YY">
+                            <input type="text" minlength="3" maxlength="3" placeholder="CVC">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-payment w-100 mb-3">Submit Payment</button>
 
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input">
