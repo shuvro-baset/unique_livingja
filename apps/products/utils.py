@@ -194,3 +194,42 @@ def send_contact_email(request):
     except Exception as e:
         print(e)
         return False
+
+
+def distinct_sub_category(query_obj):
+    sub_category = []
+    temp_arr = []
+    for obj in query_obj:
+        if obj.sub_category.name not in temp_arr:
+            temp_arr.append(obj.sub_category.name)
+            sub_category.append(obj)
+    return sub_category
+
+
+def distinct_add_category(query_obj):
+    add_category = []
+    temp_arr = []
+    for obj in query_obj:
+        if obj.add_category.name not in temp_arr:
+            temp_arr.append(obj.add_category.name)
+            add_category.append(obj)
+    return add_category
+
+
+def add_temp_carts(request, product_id, qty):
+    carts = request.session.get('carts', {})
+    carts.update({product_id: {'product_id': int(product_id), 'qty': int(qty)}})
+    request.session['carts'] = carts
+    request.session.modified = True
+    print(request.session.get('carts'))
+    # request.session.delete()
+
+def delete_temp_carts(request, product_id):
+    carts = request.session.get('carts', {})
+    del carts[str(product_id)]
+
+    request.session['carts'] = carts
+    request.session.modified = True
+
+    # for cart in carts.values():
+    #     print(cart['product_id'], cart['qty'], )

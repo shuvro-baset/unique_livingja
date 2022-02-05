@@ -22,72 +22,81 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for cart in order_item %}
-                        <tr class="text-center">
-                            <td>
-                                <a href="{% url 'single_product' cart.product.main_category cart.product.sku %}?edit=1"><img
-                                        class="img-fluid" style="width: 120px; height: 120px;"
-                                        src="{{ cart.product.image.url }}"
-                                        alt="#"></a>
-                            </td>
-                            <td>{{ cart.product.name }}</td>
-                            <td>${{ cart.product.price }}</td>
-                            <td class="d-flex justify-content-center">
-                                {#                                <input value="{{ cart.quantity }}" type="number" min="1" max="999"/>#}
-                                <button class="mx-2 btn"
-                                        onclick="addBtn({{ cart.product.id }}, {{ cart.product.price }})"
-                                        id="add-btn{{ cart.product.id }}">+
-                                </button>
-                                <input class="mx-2" id="input-add{{ cart.product.id }}" type="number" min="1"
-                                       value="{{ cart.quantity }}" max="999"/>
-                                <button class="mx-2 btn"
-                                        onclick="minusBtn({{ cart.product.id }}, {{ cart.product.price }})"
-                                        id="minus-btn{{ cart.product.id }}">
-                                    -
-                                </button>
-                            </td>
-                            <td id="price_{{ cart.product.id }}"></td>
-                            <script>
-                                let price_{{ cart.product.id }} =
-                                {{ cart.product.price }} *
-                                {{ cart.quantity }};
-                                document.getElementById("price_{{ cart.product.id }}").innerHTML = '$' + price_{{ cart.product.id }};
-                            </script>
-                            <td><a href="{% url 'remove_cart' cart.id %}"><i style="color: red"
-                                                                             class="fas fa-trash float-right"></i></a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    {#                    <tr class="text-center">#}
-                    {#                        <td>#}
-                    {#                            <img class="img-fluid" style="width: 120px; height: 120px;"#}
-                    {#                                 src="https://www.salgar.net/cdnassets/24553-Ciclograma-lavabo-de-posar-VARMEGA-515-porcelana-blanca_l.jpg"#}
-                    {#                                 alt="">#}
-                    {#                        </td>#}
-                    {#                        <td>book</td>#}
-                    {#                        <td>$120</td>#}
-                    {#                        <td>#}
-                    {#                            <input type="number" min="1" max="999"/>#}
-                    {#                        </td>#}
-                    {#                        <td>Mark</td>#}
-                    {#                        <td>Otto</td>#}
-                    {#                        <td><i style="color: red" class="fas fa-times"></i></td>#}
-                    {#                    </tr>#}
-                    {#                    <tr class="text-center">#}
-                    {#                        <td>#}
-                    {#                            <img class="img-fluid" style="width: 120px; height: 120px;"#}
-                    {#                                 src="https://www.salgar.net/cdnassets/24553-Ciclograma-lavabo-de-posar-VARMEGA-515-porcelana-blanca_l.jpg"#}
-                    {#                                 alt="">#}
-                    {#                        </td>#}
-                    {#                        <td>book</td>#}
-                    {#                        <td>$120</td>#}
-                    {#                        <td>#}
-                    {#                            <input type="number" min="1" max="999"/>#}
-                    {#                        </td>#}
-                    {#                        <td>Mark sdfsdf sdf sdf sdf</td>#}
-                    {#                        <td>Otto</td>#}
-                    {#                        <td><i style="color: red" class="fas fa-times"></i></td>#}
-                    {#                    </tr>#}
+                    {% if user.is_authenticated %}
+                        {% for cart in order_item %}
+                            <tr class="text-center">
+                                <td>
+                                    <a href="{% url 'single_product' cart.product.main_category cart.product.sku %}?edit=1"><img
+                                            class="img-fluid" style="width: 75px; height: 75px;"
+                                            src="{{ cart.product.image.url }}"
+                                            alt="#"></a>
+                                </td>
+                                <td>{{ cart.product.name }}</td>
+                                <td>J${{ cart.product.price|floatformat:2 }}</td>
+                                <td class="d-flex justify-content-center">
+                                    {#                                <input value="{{ cart.quantity }}" type="number" min="1" max="999"/>#}
+                                    <button class="mx-2 btn"
+                                            onclick="addBtn({{ cart.product.id }}, {{ cart.product.price }})"
+                                            id="add-btn{{ cart.product.id }}">+
+                                    </button>
+                                    <input class="mx-2" id="input-add{{ cart.product.id }}" type="number" min="1"
+                                           value="{{ cart.quantity }}" max="999" disabled/>
+                                    <button class="mx-2 btn"
+                                            onclick="minusBtn({{ cart.product.id }}, {{ cart.product.price }})"
+                                            id="minus-btn{{ cart.product.id }}">
+                                        -
+                                    </button>
+                                </td>
+                                <td id="price_{{ cart.product.id }}">J${{ cart.get_total }}</td>
+                                {#                            <script>#}
+                                {#                                let price_{{ cart.product.id }} =#}
+                                {#                                {{ cart.product.price }} *#}
+                                {#                                {{ cart.quantity }};#}
+                                {#                                document.getElementById("price{{ cart.product.id }}").innerHTML = '$' + price{{ cart.product.id }};#}
+                                {#                            </script>#}
+                                <td><a href="{% url 'remove_cart' cart.id %}"><i style="color: red"
+                                                                                 class="fas fa-trash float-right"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        {% for cart in order_item %}
+                            <tr class="text-center">
+                                <td>
+                                    <a href="{% url 'single_product' cart.product.main_category cart.product.sku %}?edit=1"><img
+                                            class="img-fluid" style="width: 75px; height: 75px;"
+                                            src="{{ cart.product.image.url }}"
+                                            alt="#"></a>
+                                </td>
+                                <td>{{ cart.product.name }}</td>
+                                <td>J${{ cart.product.price|floatformat:2 }}</td>
+                                <td class="d-flex justify-content-center">
+                                    {#                                <input value="{{ cart.quantity }}" type="number" min="1" max="999"/>#}
+                                    <button class="mx-2 btn"
+                                            onclick="addBtn({{ cart.product.id }}, {{ cart.product.price }})"
+                                            id="add-btn{{ cart.product.id }}">+
+                                    </button>
+                                    <input class="mx-2" id="input-add{{ cart.product.id }}" type="number" min="1"
+                                           value="{{ cart.qty }}" max="999" disabled/>
+                                    <button class="mx-2 btn"
+                                            onclick="minusBtn({{ cart.product.id }}, {{ cart.product.price }})"
+                                            id="minus-btn{{ cart.product.id }}">
+                                        -
+                                    </button>
+                                </td>
+                                <td id="price_{{ cart.product.id }}">J${{ cart.get_total }}</td>
+                                <script>
+                                    let price_{{ cart.product.id }} =
+                                    {{ cart.product.price }} *
+                                    {{ cart.qty }};
+                                    document.getElementById("price_{{ cart.product.id }}").innerHTML = '$' + price_{{ cart.product.id }}.toFixed(2);
+                                </script>
+                                <td><a href="{% url 'remove_cart' cart.product.id %}"><i style="color: red"
+                                                                                         class="fas fa-trash float-right"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
                     </tbody>
                 </table>
             </div>
@@ -100,24 +109,76 @@
 
 
     <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        const csrftoken = getCookie('csrftoken');
 
         const addBtn = (id, price) => {
+            let cart_count = parseInt(document.getElementById('lblCartCount').innerText);
+
             let increase = parseInt(document.getElementById(`input-add${id}`).value);
             increase++;
             document.getElementById(`input-add${id}`).value = increase;
-            const total_price = price*increase;
-            document.getElementById(`price_${id}`).innerHTML = '$' + total_price;
+            const total_price = price * increase;
+            document.getElementById(`price_${id}`).innerHTML = '$' + total_price.toFixed(2);
+
+            document.getElementById('lblCartCount').innerText = cart_count + 1;
+
+            $.ajax({
+                url: "{% url 'update_cart' %}",
+                type: "POST",
+                dataType: "json",
+                headers: {"X-CSRFToken": getCookie("csrftoken")},
+                data: {"id": String(id), "qty": String(increase)},
+                success: function (response) {
+                    console.log(response)
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            })
         }
 
         const minusBtn = (id, price) => {
+            let cart_count = parseInt(document.getElementById('lblCartCount').innerText);
+
             let increase = parseInt(document.getElementById(`input-add${id}`).value);
             increase = increase - 1;
             if (increase === 0) {
                 return
             }
             document.getElementById(`input-add${id}`).value = increase;
-            const total_price = price*increase;
-            document.getElementById(`price_${id}`).innerHTML = '$' + total_price;
+            const total_price = price * increase;
+            document.getElementById(`price_${id}`).innerHTML = '$' + total_price.toFixed(2);
+            document.getElementById('lblCartCount').innerText = cart_count - 1;
+
+            $.ajax({
+                url: "{% url 'update_cart' %}",
+                type: "POST",
+                dataType: "json",
+                headers: {"X-CSRFToken": getCookie("csrftoken")},
+                data: {"id": String(id), "qty": String(increase)},
+                success: function (response) {
+                    console.log(response)
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            })
         }
     </script>
 {% endblock %}

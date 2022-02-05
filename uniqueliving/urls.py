@@ -13,6 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import environ
+env = environ.Env(DEBUG=(bool, False))
+# reading .env file
+environ.Env.read_env()
+
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -24,5 +29,6 @@ urlpatterns = [
     path('', include('apps.products.urls')),
     path('', include('apps.user.urls')),
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if env.bool('IS_LIVE') != True:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

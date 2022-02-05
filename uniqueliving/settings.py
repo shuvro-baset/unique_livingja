@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     'apps.user',
     'apps.products',
     'import_export',
@@ -64,7 +65,7 @@ ROOT_URLCONF = 'uniqueliving.urls'
 AUTH_USER_MODEL = 'user.UniUser'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
-# LOGOUT_URL = 'logout'
+LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'login'
 
 TEMPLATES = [
@@ -135,17 +136,46 @@ GRAPPELLI_ADMIN_TITLE = 'Unique Living JA'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-# Path where media is stored
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+if env.bool('IS_LIVE', default=False) != True:
+    # Path where media is stored
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_URL = '/media/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATIC_URL = '/static/'
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
+
+else:
+    # todo: images or file upload aws s3 configuration start
+    AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
+
+    AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME')  # todo: may be need to change later
+    AWS_S3_CUSTOM_DOMAIN = env.str('AWS_S3_CUSTOM_DOMAIN')
+
+    AWS_STATIC_LOCATION = 'static'
+    STATICFILES_STORAGE = 'uniqueliving.storage_backends.StaticStorage'
+
+    # AWS_PUBLIC_MEDIA_LOCATION = 'media'
+    DEFAULT_FILE_STORAGE = 'uniqueliving.storage_backends.MediaStorage'  # the media storage configurations
+
+    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_STATIC_LOCATION)
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+    # todo: images or file upload aws s3 configuration end
+
+# DBBACKUP_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# DBBACKUP_STORAGE_OPTIONS = {
+#     "access_key": env.str('AWS_ACCESS_KEY_ID'),
+#     "secret_key": env.str('AWS_SECRET_ACCESS_KEY'),
+#     "bucket_name": env.str('AWS_STORAGE_BUCKET_NAME')
+# }
+
 # todo: email settings start
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
@@ -158,7 +188,6 @@ EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", default="")
 DEFAULT_FROM_EMAIL = env.str("DEFAULT_FROM_EMAIL", default="")
 INTERNAL_EMAIL = env.str('INTERNAL_EMAIL', default="")
 EMAIL_TIMEOUT = 50
-
 # todo: email settings end
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

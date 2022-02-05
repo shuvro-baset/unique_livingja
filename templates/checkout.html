@@ -5,36 +5,36 @@
 
     <div class="container">
         <div class="row my-4">
-            <div class="col-lg-6">
-                <form method="post" action="{% url 'checkout' %}">{% csrf_token %}
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Name</label>
-                        <input type="text" name="name" class="form-control" id="exampleFormControlInput1"
-                               placeholder="Name" value="{{ shipping_address.name }}" required></input>
-                    </div>
-                    <div class="form-group">
-                        <label>Email address</label>
-                        <input type="email" name="email" class="form-control" placeholder="Email" required
-                               value="{{ shipping_address.email }}"></input>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Phone Number</label> <br>
-                        <input type="tel" placeholder="876-XXX-XXXX" name="phone_number" class="form-control"
-                               id="exampleFormControlTextarea1" rows="3" maxlength="12" minlength="12"
-                               required value="{{ shipping_address.phone }}"></input>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Address</label> <br>
-                        <textarea name="address" placeholder="Please write address in details here..."
-                                  class="form-control"
-                                  id="exampleFormControlTextarea1" rows="3"
-                                  required>{{ shipping_address.address }}</textarea>
-                    </div>
-                    <div>
-                        <button class="btn btn-outline-warning" type="submit">Checkout</button>
-                    </div>
-                </form>
-            </div>
+                        <div class="col-lg-6">
+                            <form method="post" action="{% url 'checkout' %}">{% csrf_token %}
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Name</label>
+                                    <input type="text" name="name" class="form-control" id="exampleFormControlInput1"
+                                           placeholder="Name" value="{{ shipping_address.name }}" required></input>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email address</label>
+                                    <input type="email" name="email" class="form-control" placeholder="Email" required
+                                           value="{{ shipping_address.email }}"></input>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Phone Number</label> <br>
+                                    <input type="tel" placeholder="876-XXX-XXXX" name="phone_number" class="form-control"
+                                           id="exampleFormControlTextarea1" rows="3" maxlength="12" minlength="12"
+                                           required value="{{ shipping_address.phone }}"></input>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Address</label> <br>
+                                    <textarea name="address" placeholder="Please write address in details here..."
+                                              class="form-control"
+                                              id="exampleFormControlTextarea1" rows="3"
+                                              required>{{ shipping_address.address }}</textarea>
+                                </div>
+                                <div>
+                                    <button class="btn btn-outline-warning" type="submit">Proceed Checkout</button>
+                                </div>
+                            </form>
+                        </div>
             <div class="col-lg-6">
                 <div>
                     <a class="btn btn-outline-warning" href="{% url 'cart' %}"><i class="fas fa-backward"></i> Back to
@@ -42,35 +42,48 @@
                     </a>
                 </div>
                 <hr>
-                <h2>Order Summary</h2>
+                <h4>Order Summary</h4>
                 <hr>
                 <table class="table table-responsive ">
                     <tr class="text-center">
-                                                <th>#</th>
+                        <th>#</th>
                         <th class="text-left">Item</th>
                         <th>Price</th>
                         <th>Quantity</th>
                     </tr>
                     {% for order_item in order_items %}
                         <tr>
-                                                        <td><img class="img-fluid" style="height: 100px; width: 100px;" src="{{ order_item.product.image.url }}"
-                                                                 alt="#"></td>
+                            <td><img class="img-fluid" style="height: 50px; width: 50px;"
+                                     src="{{ order_item.product.image.url }}"
+                                     alt="#"></td>
                             <td>{{ order_item.product.name }}</td>
-                            <td class="text-right">{{ order_item.product.price }}</td>
+                            <td class="text-right">J${{ order_item.product.price|floatformat:2 }}</td>
                             <td class="text-right">{{ order_item.quantity }}</td>
                         </tr>
                     {% endfor %}
                 </table>
                 <hr>
                 <div>
-                    <table class="table-borderless">
+                    <table class="table-borderless float-right">
                         <tr style="border: none;">
                             <td style="width: 150px;">Items:</td>
                             <td class="text-right">{{ order_item_count }}</td>
                         </tr>
                         <tr>
+                            <td style="width: 150px;">Sub-Total:</td>
+                            <td class="text-right">J${{ sub_total_price|floatformat:2 }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 150px;">GCT:</td>
+                            <td class="text-right">J${{ total_tax|floatformat:2 }}</td>
+                        </tr>
+                        <tr>
+                            <td><hr></td>
+                            <td><hr></td>
+                        </tr>
+                        <tr>
                             <td style="width: 150px;">Total:</td>
-                            <td class="text-right">${{ total_price }}</td>
+                            <td class="text-right">J${{ total|floatformat:2 }}</td>
                         </tr>
                     </table>
                 </div>

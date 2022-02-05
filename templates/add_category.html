@@ -16,11 +16,10 @@
                             <h5>Categories:</h5>
                         </a>
                     </li>
-                    {% for category in products %}
+                    {% for category in add_categories %}
                         {% if category.add_category.name != '' and category.sup_category.name != '' %}
                             <li class="nav-item">
                                 <a class="nav-link categories cat-up"
-                                        {# href="/category/bathroom/subcategory/vanities">{{ sub }}</a>#}
                                    href="{% url 'add_sup_category' category.main_category.name category.add_category.name category.sup_category.name %}">{{ category.sup_category.name }}</a>
                             </li>
                         {% endif %}
@@ -34,7 +33,7 @@
                             <h5>Brands: </h5>
                         </a>
                     </li>
-                    {% for brand in products %}
+                    {% for brand in add_categories %}
                         {% if brand.add_category.name != '' and brand.brand != '' %}
                             <li class="nav-item">
                                 <a class="nav-link categories"

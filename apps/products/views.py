@@ -4,7 +4,8 @@ from django.core.paginator import Paginator
 import json
 import datetime
 from .models import *
-from .utils import cookieCart, cartData, get_query, get_or_create_customer, send_contact_email
+from .utils import cookieCart, cartData, get_query, get_or_create_customer, send_contact_email, distinct_sub_category, \
+    distinct_add_category, add_temp_carts, delete_temp_carts
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Sum
 from django.http import JsonResponse
@@ -74,9 +75,9 @@ def add_category(request, main_category, addcategory_name):
     page_number = request.GET.get("page", 1)
     page_obj = paginator.get_page(page_number)
     # todo: pagination end
-
+    add_category = distinct_add_category(products)
     context = {
-        'products': products,
+        'add_categories': add_category,
         # 'sub_categories': sub_categories,
         "page_obj": page_obj,
         "main_category": main_category,
@@ -95,7 +96,7 @@ def add_sup_category(request, main_category, addcategory_name, supcategory_name)
     # todo: pagination end
 
     context = {
-        'products': products,
+        # 'products': products,
         # 'sub_categories': sub_categories,
         "page_obj": page_obj,
         "supcategory_name": supcategory_name,
@@ -198,6 +199,7 @@ def brands(request, main_category, brand_name):
 def brand(request, brand_name):
     products = Product.objects.filter(brand=brand_name).order_by('-id')
     # print(products.distinct('sub_category__name').order_by('-id')) # todo: get unique sub_catagory, will use this query for prosgresql DB
+    sub_category = distinct_sub_category(products)
 
     # todo: pagination start
     paginator = Paginator(products, 1)
@@ -207,7 +209,7 @@ def brand(request, brand_name):
     context = {
         'products': products,
         'brand_name': brand_name,
-        # 'sub_categories': products,
+        'sub_categories': sub_category,
         "page_obj": page_obj
     }
     return render(request, 'brand.html', context)
@@ -309,20 +311,28 @@ def contact(request):
     return render(request, 'contact.html')
 
 
-@login_required()
+# @login_required()
 def cart(request):
-    order_item = OrderItem.objects.filter(user_id=request.user.id, is_done=False)
-    return render(request, 'cart.html', {"order_item": order_item, })
+    if request.user.is_anonymous:
+        carts_arr = []
+        carts = request.session.get('carts', {})
+        for cart in carts.values():
+            carts_arr.append({'product': Product.objects.get(id=cart['product_id']), 'qty': cart['qty']})
+        return render(request, 'cart.html', {"order_item": carts_arr})
+    else:
+        order_item = OrderItem.objects.filter(user_id=request.user.id, is_done=False)
+        return render(request, 'cart.html', {"order_item": order_item, })
 
 
-@login_required()
+# @login_required()
 def add_to_cart(request):
     if request.method == 'POST':
         product_id = request.POST.get('product_id')
         absulate_url = request.POST.get('absulate_url')
         qty = request.POST.get('qty')
-        if product_id and qty:
-            order_item = OrderItem.objects.filter(product_id=product_id, user=request.user).first()
+
+        if product_id and qty and request.user.is_authenticated:
+            order_item = OrderItem.objects.filter(product_id=product_id, user=request.user, is_done=False).first()
             if order_item:
                 order_item.quantity = qty
                 order_item.save()
@@ -330,21 +340,54 @@ def add_to_cart(request):
                 order_item = OrderItem(product_id=product_id, user=request.user, quantity=qty)
                 order_item.save()
             return HttpResponseRedirect(absulate_url)
+        elif product_id and qty and request.user.is_anonymous:
+            add_temp_carts(request, product_id, qty)
+            return HttpResponseRedirect(absulate_url)
     else:
         return redirect('home')
 
 
-@login_required()
+# @login_required()
+def update_cart(request):
+    if request.is_ajax():
+        product_id = request.POST.get('id')
+        qty = request.POST.get('qty')
+        if product_id and qty and request.user.is_authenticated:
+            if not int(qty) <= 0:
+                order_item = OrderItem.objects.filter(product_id=product_id, user=request.user, is_done=False).first()
+                if order_item:
+                    order_item.quantity = qty
+                    order_item.save()
+                return JsonResponse(data={}, safe=False, status=201)
+
+        if product_id and qty and request.user.is_anonymous:
+            if not int(qty) <= 0:
+                add_temp_carts(request, product_id, qty)
+                return JsonResponse(data={}, safe=False, status=201)
+        else:
+            return JsonResponse(data={}, safe=False, status=404)
+
+
+# @login_required()
 def remove_cart(request, id):
-    order_item = OrderItem.objects.filter(id=id).delete()
-    return redirect('cart')
+    if request.user.is_authenticated:
+        order_item = OrderItem.objects.filter(id=id).delete()
+        return redirect('cart')
+    else:
+        try:
+            delete_temp_carts(request, id)
+            return redirect('cart')
+        except Exception as e:
+            return redirect('cart')
 
 
 @login_required()
 def checkout(request):
     shipping_address = ShippingAddress.objects.filter(user=request.user).first()
     order_items = OrderItem.objects.filter(user_id=request.user.id, is_done=False)
-    total_price = sum([item.get_total for item in order_items])
+    sub_total_price = sum([item.get_total for item in order_items])
+    total_tax = sub_total_price * 0.15
+    total = sub_total_price + total_tax
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -360,47 +403,53 @@ def checkout(request):
             shipping_address_ins = ShippingAddress(user=request.user, name=name, email=email, phone=phone_number,
                                                    address=address)
             shipping_address_ins.save()
-        return redirect('checkout')
+        return redirect('payment')
 
     return render(request, 'checkout.html',
                   {"order_items": order_items, "shipping_address": shipping_address,
-                   "total_price": float(format(total_price, ".2f")), })
-
-    # @login_required()
-    # def cart(request):
-    #     item_id = request.GET.get('item_id')
-    #     qty = request.GET.get('qty')
-    #     if item_id and qty:
-    #         order_item = OrderItem.objects.get_or_create(id=item_id, user=request.user)
-    #     #     if int(qty) == 0:
-    #     #         if order_item.quantity == 1:
-    #     #             pass
-    #     #         else:
-    #     #             order_item.quantity = order_item.quantity - 1
-    #     #             order_item.save()
-    #     #     elif int(qty) == 1:
-    #     #         order_item.quantity = order_item.quantity + 1
-    #     #         order_item.save()
-    #     #
-    #     # data = cartData(request)
-    #     #
-    #     # cartItems = data["cartItems"]
-    #     # order = data["order"]
-    #     # items = data["items"]
-    #     # sub_total = sum([item.get_total for item in items])  # JUST ALL PRODUCT PRICE
-    #     # tax_total = sum([item.get_total for item in items]) * 0.15  # (total tax)ADD TAX INTO TOTAL PRODUCT PRICE
-    #     # total = sub_total + tax_total
-    #     #
-    #     # context = {
-    #     #     "items": items,
-    #     #     "order": order,
-    #     #     "cartItems": cartItems,
-    #     #     "sub_total": sub_total,
-    #     #     "gct": tax_total,
-    #     #     "total": total,
-    #     # }
-    #     return render(request, 'cart.html')
+                   "sub_total_price": float(format(sub_total_price, ".2f")),
+                   "total_tax": float(format(total_tax, ".2f")),
+                   "total": float(format(total, ".2f")), })
 
 
+@login_required()
 def payment(request):
-    return render(request, 'payment.html')
+    order_items = OrderItem.objects.filter(user_id=request.user.id, is_done=False)
+    total_price = sum([item.get_total for item in order_items])
+    return render(request, 'payment.html',
+                  {"order_items": order_items, "total_price": float(format(total_price, ".2f"))})
+
+# @login_required()
+# def cart(request):
+#     item_id = request.GET.get('item_id')
+#     qty = request.GET.get('qty')
+#     if item_id and qty:
+#         order_item = OrderItem.objects.get_or_create(id=item_id, user=request.user)
+#     #     if int(qty) == 0:
+#     #         if order_item.quantity == 1:
+#     #             pass
+#     #         else:
+#     #             order_item.quantity = order_item.quantity - 1
+#     #             order_item.save()
+#     #     elif int(qty) == 1:
+#     #         order_item.quantity = order_item.quantity + 1
+#     #         order_item.save()
+#     #
+#     # data = cartData(request)
+#     #
+#     # cartItems = data["cartItems"]
+#     # order = data["order"]
+#     # items = data["items"]
+#     # sub_total = sum([item.get_total for item in items])  # JUST ALL PRODUCT PRICE
+#     # tax_total = sum([item.get_total for item in items]) * 0.15  # (total tax)ADD TAX INTO TOTAL PRODUCT PRICE
+#     # total = sub_total + tax_total
+#     #
+#     # context = {
+#     #     "items": items,
+#     #     "order": order,
+#     #     "cartItems": cartItems,
+#     #     "sub_total": sub_total,
+#     #     "gct": tax_total,
+#     #     "total": total,
+#     # }
+#     return render(request, 'cart.html')

@@ -117,7 +117,7 @@ class OrderItem(models.Model):
     @property
     def get_total(self):
         total = self.product.price * self.quantity
-        return total
+        return float(format(total, ".2f"))
 
     @property
     def get_tax(self):

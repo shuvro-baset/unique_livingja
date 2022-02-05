@@ -1,12 +1,12 @@
-
+# uniquelivingja-fiverr-alcia
 
 ### Make migrations
 
 Run on project terminal
 
 ```
-python manage makemigratons
-python manage migrate
+python manage.py makemigratons
+python manage.py migrate
 ```
 
 ### Create Super User
@@ -14,7 +14,12 @@ python manage migrate
 Run on project terminal
 
 ```
-python manage createsuperuser
+python manage.py createsuperuser
+```
+
+####### Run server:
+```
+python manage.py runserver
 ```
 
 ### Add all differents of categories (main, sub, sup, add category)
@@ -22,4 +27,4 @@ python manage createsuperuser
 Run on project terminal
 
 ```
-python manage insert_all_categories
+python manage.py insert_all_categories
